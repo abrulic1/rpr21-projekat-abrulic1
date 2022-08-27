@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="361.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.PocetniController">
+   <stylesheets>
+           <URL value="@/css/pocetni.css" />
+   </stylesheets>
+    <center>
+      <GridPane fx:id="bodyPocetni" prefHeight="289.0" prefWidth="334.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.6" minWidth="102.0" prefWidth="165.6" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="32.0" prefWidth="330.0" text="Login" GridPane.columnSpan="3">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Nickname:" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Password:" GridPane.rowIndex="2">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TextField fx:id="nicknameField" prefHeight="38.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin></TextField>
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin></PasswordField>
+            <Pane GridPane.rowIndex="3">
+               <children>
+                  <RadioButton fx:id="User" layoutX="56.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" text="User">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="choiceRole" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="Administrator" layoutX="155.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="144.0" text="Administrator" toggleGroup="$choiceRole">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </Pane>
+            <Pane GridPane.columnSpan="3" GridPane.rowIndex="6">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="321.0" text="Do not have account?">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="registerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="37.0" mnemonicParsing="false" onAction="#registrationAction" prefHeight="40.0" prefWidth="102.0" text="Register">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
+            </Pane>
+            <Button fx:id="signinBtn" mnemonicParsing="false" onAction="#RoleSignInAction" prefHeight="26.0" prefWidth="332.0" text="Sign in" GridPane.columnSpan="3" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Button>
+            <Separator prefHeight="3.0" prefWidth="177.0" GridPane.columnSpan="3" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Separator>
+         </children>
+      </GridPane>
+   </center>
+   <top>
+      <ButtonBar fx:id="languageBtn" buttonMinWidth="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="323.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="gbBtn" maxWidth="60.0" mnemonicParsing="false" />
+            <Button fx:id="baBtn" mnemonicParsing="false" />
+            <Button fx:id="deBtn" mnemonicParsing="false" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </top>
+</BorderPane>

@@ -1,0 +1,21 @@
+#deBtn{
+    -fx-graphic: url("/images/de.png");
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+}
+#baBtn{
+    -fx-graphic: url("/images/ba.png");
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+}
+#gbBtn{
+    -fx-graphic: url("/images/gb.png");
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+}
+#languageBtn{
+    -fx-background-color: lightgrey;
+}
+
+
+

@@ -12,6 +12,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -26,6 +27,11 @@ public class PocetniController {
     public ToggleGroup choiceRole;
     public RadioButton User;
     public RadioButton Administrator;
+
+    DatabaseDAO dao = DatabaseDAO.getInstance();
+
+    public PocetniController() throws SQLException {
+    }
 
 
     @FXML

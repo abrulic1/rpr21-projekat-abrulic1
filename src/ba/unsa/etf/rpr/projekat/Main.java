@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 

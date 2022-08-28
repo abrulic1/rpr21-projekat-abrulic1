@@ -5,3 +5,5 @@ G
 .idea/libraries/lib.xml,5\6\563a23e064e6fdd2d09bd0c2d99ef456aff71a31
 K
 rpr21-projekat-abrulic1.iml,9\e\9efab5af42f24f2da66223391e34f9253c5fefef
+A
+restaurant.db.sql,0\a\0a110915d82995bfec7bf4289392e728965844a2

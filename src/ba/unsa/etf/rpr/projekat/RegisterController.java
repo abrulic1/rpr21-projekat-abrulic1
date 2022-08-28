@@ -50,6 +50,8 @@ public class RegisterController {
     public void initialize() throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         femaleBttn.setSelected(true);
+        if(usernameFld.getText().trim().isEmpty()) usernameLabelErrorText.setText("");
+        if(passwordFld.getText().isEmpty()) passwordLengthLabel.setText("");
         //nameField validation
         nameFld.textProperty().addListener((obs, old, n) -> {
             if (!nameFld.getText().trim().isEmpty()) {
@@ -106,25 +108,21 @@ public class RegisterController {
 
         //usernameField validation
         usernameFld.textProperty().addListener((obs, old, n) -> {
-            if (!usernameFld.getText().trim().isEmpty()) {
-                usernameFld.getStyleClass().removeAll("IncorrectInput");
-                usernameFld.getStyleClass().add("CorrectInput");
-            } else{
-                usernameFld.getStyleClass().removeAll("CorrectInput");
-                usernameFld.getStyleClass().add("IncorrectInput");
-            }
-            //checking is username already taken
             ArrayList<User> users = dao.returnAllUsers(usernameFld.getText());
             ArrayList<Administrator> admins = dao.returnAllAdmins(usernameFld.getText());
-            if(users.size()!=0 || admins.size()!=0){
-                usernameFld.getStyleClass().removeAll("CorrectInput");
-                usernameFld.getStyleClass().add("IncorrectInput");
-                usernameLabelErrorText.setText(bundle.getString("taken_username"));
-            }
-            else{
+            if (!usernameFld.getText().trim().isEmpty() && users.size()==0 && admins.size()==0) {
                 usernameFld.getStyleClass().removeAll("IncorrectInput");
                 usernameFld.getStyleClass().add("CorrectInput");
                 usernameLabelErrorText.setText("");
+            } else if (usernameFld.getText().trim().isEmpty() && users.size()==0 && admins.size()==0){
+                usernameFld.getStyleClass().removeAll("CorrectInput");
+                usernameFld.getStyleClass().add("IncorrectInput");
+                usernameLabelErrorText.setText("");
+            }
+            else{
+                usernameFld.getStyleClass().removeAll("CorrectInput");
+                usernameFld.getStyleClass().add("IncorrectInput");
+                usernameLabelErrorText.setText(bundle.getString("taken_username"));
             }
         });
     }
@@ -194,6 +192,8 @@ public class RegisterController {
 
     public void englishLanguageAction(ActionEvent actionEvent) {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
+        nameFld.requestFocus();
+        usernameLabelErrorText.setText("");
         Locale locale = new Locale("en_US");
         Locale.setDefault(new Locale("en", "US"));
         bundle = ResourceBundle.getBundle("Translation_en_US", locale);
@@ -213,14 +213,17 @@ public class RegisterController {
         registerNowBtn.setText(bundle.getString("register_now"));
         haveAnAccountLbl.setText(bundle.getString("Already_have_an_account?"));
         signInLabel.setText(bundle.getString("sign_in"));
-        usernameLabelErrorText.setText(bundle.getString("taken_username"));
-        passwordLengthLabel.setText(bundle.getString("poor_password"));
+        if(usernameFld.getText().trim().isEmpty()) usernameLabelErrorText.setText("");
+        else usernameLabelErrorText.setText(bundle.getString("taken_username"));
+        if(passwordFld.getText().isEmpty()) passwordLengthLabel.setText("");
+        else passwordLengthLabel.setText(bundle.getString("poor_password"));
         Stage stage = (Stage) passwordFld.getScene().getWindow();
         stage.setTitle(bundle.getString("register"));
     }
 
     public void bosnianLanguageAction(ActionEvent actionEvent) {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
+        nameFld.requestFocus();
         Locale locale = new Locale("bs_BA");
         Locale.setDefault(new Locale("bs", "BA"));
         bundle = ResourceBundle.getBundle("Translation_bs_BA", locale);
@@ -229,6 +232,7 @@ public class RegisterController {
 
     public void germanLanguageAction(ActionEvent actionEvent) {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
+        nameFld.requestFocus();
         Locale locale = new Locale("de_DE");
         Locale.setDefault(new Locale("de", "DE"));
         bundle = ResourceBundle.getBundle("Translation_de_DE", locale);

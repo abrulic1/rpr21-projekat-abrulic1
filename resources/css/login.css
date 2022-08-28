@@ -7,9 +7,7 @@
 #gbBtn{
     -fx-graphic: url("/images/gb.png");
 }
-#languageBtn{
-    -fx-background-color: lightgrey;
-}
+
 
 
 

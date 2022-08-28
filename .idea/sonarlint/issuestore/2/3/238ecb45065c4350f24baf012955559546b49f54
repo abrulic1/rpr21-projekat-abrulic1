@@ -1,0 +1,17 @@
+
+d
+java:S1659"NDeclare "findUserStatement" and all following declarations on a separate line.(Žà–‰
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Ë÷²ý
+N	java:S106j"9Replace this use of System.out or System.err by a logger.(ûÖè¸
+<
+java:S1068"&Remove this unused "ps" private field.(Žà–‰
+‹
+java:S1319p"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¦´ýëüÿÿÿÿ
+†
+java:S1319~"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(œŒº…
+P
+java:S1141_"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+7
+java:S1643]"Use a StringBuilder instead.(¥…ˆÇþÿÿÿÿ
+b
+java:S2095`"GUse try-with-resources or close this "Statement" in a "finally" clause.(ìï‡Àûÿÿÿÿ

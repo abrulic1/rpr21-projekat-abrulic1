@@ -13,7 +13,7 @@
     <center>
       <GridPane prefHeight="289.0" prefWidth="334.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
+          <ColumnConstraints hgrow="SOMETIMES" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.6" minWidth="102.0" prefWidth="165.6" />
         </columnConstraints>
@@ -34,14 +34,14 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
-            <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" text="%username" GridPane.rowIndex="1">
+            <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefWidth="122.0" text="%username" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" text="%password" GridPane.rowIndex="2">
+            <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" prefWidth="122.0" text="%password" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -64,7 +64,7 @@
                </GridPane.margin></PasswordField>
             <Pane GridPane.rowIndex="3">
                <children>
-                  <RadioButton fx:id="User" layoutX="56.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" text="%user">
+                  <RadioButton fx:id="User" layoutX="56.0" mnemonicParsing="false" text="%user">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -75,7 +75,7 @@
                         <ToggleGroup fx:id="choiceRole" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="Administrator" layoutX="155.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="144.0" text="%administrator" toggleGroup="$choiceRole">
+                  <RadioButton fx:id="Administrator" layoutX="155.0" mnemonicParsing="false" text="%administrator" toggleGroup="$choiceRole">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>

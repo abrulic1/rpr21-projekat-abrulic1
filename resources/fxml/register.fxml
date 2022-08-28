@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.RegisterController">
+<BorderPane prefWidth="396.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.RegisterController">
     <stylesheets>
         <URL value="@/css/register.css" />
     </stylesheets>
@@ -29,7 +29,8 @@
             <RowConstraints vgrow="SOMETIMES" />
             <RowConstraints vgrow="SOMETIMES" />
                 <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="148.40003051757816" minHeight="31.0" prefHeight="43.200000000000045" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label fx:id="registerLbl" alignment="CENTER" prefHeight="50.0" prefWidth="396.0" text="%register" GridPane.columnSpan="2">
@@ -132,8 +133,14 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </TextField>
-            <Label fx:id="haveAnAccountLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="227.0" text="%Already_have_an_account?" GridPane.columnSpan="2" GridPane.rowIndex="12" />
-            <Label fx:id="signInLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" onMouseClicked="#signInLabelClicked" prefHeight="18.0" prefWidth="132.0" text="%sign_in" textFill="#1e2136" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Label fx:id="haveAnAccountLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="398.0" text="%Already_have_an_account?" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+            <Label fx:id="signInLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#signInLabelClicked" prefHeight="18.0" prefWidth="101.0" text="%sign_in" textFill="#1e2136" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="13">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" />
+               </padding></Label>
             <Label fx:id="usernameLabelErrorText" alignment="BOTTOM_LEFT" prefHeight="3.0" prefWidth="228.0" textAlignment="CENTER" textFill="#e20202" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <font>
                   <Font size="10.0" />

@@ -11,7 +11,7 @@
            <URL value="@/css/pocetni.css" />
    </stylesheets>
     <center>
-      <GridPane fx:id="bodyPocetni" prefHeight="289.0" prefWidth="334.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="289.0" prefWidth="334.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
@@ -34,33 +34,33 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Nickname:" GridPane.rowIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="111.0" text="Username:" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Password:" GridPane.rowIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="108.0" text="Password:" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="nicknameField" prefHeight="38.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <GridPane.margin>
-                  <Insets right="5.0" />
+                  <Insets right="10.0" />
                </GridPane.margin></TextField>
             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <GridPane.margin>
-                  <Insets right="5.0" />
+                  <Insets right="10.0" />
                </GridPane.margin></PasswordField>
             <Pane GridPane.rowIndex="3">
                <children>
@@ -111,12 +111,12 @@
                   <Insets bottom="5.0" />
                </GridPane.margin>
             </Pane>
-            <Button fx:id="signinBtn" mnemonicParsing="false" onAction="#RoleSignInAction" prefHeight="26.0" prefWidth="332.0" text="Sign in" GridPane.columnSpan="3" GridPane.rowIndex="4">
+            <Button fx:id="signinBtn" mnemonicParsing="false" onAction="#RoleSignInAction" prefHeight="38.0" prefWidth="316.0" text="Sign in" GridPane.columnSpan="3" GridPane.rowIndex="4">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
             <Separator prefHeight="3.0" prefWidth="177.0" GridPane.columnSpan="3" GridPane.rowIndex="5">

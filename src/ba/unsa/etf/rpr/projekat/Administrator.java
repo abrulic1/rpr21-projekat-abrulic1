@@ -1,20 +1,19 @@
 package ba.unsa.etf.rpr.projekat;
 
-public class User {
+public class Administrator {
     private int id;
-    private String name, surname, email, username, password, gender;
+    private String name, surname, email, username, password;
 
-    public User(int id, String name, String surname, String email, String username, String password, String gender) {
+    public Administrator(int id, String name, String surname, String email, String username, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.gender = gender;
     }
 
-    public User() {
+    public Administrator() {
     }
 
     public int getId() {
@@ -63,13 +62,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 }

@@ -5,19 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
-
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class PocetniController {
-
     public Button registerBtn;
     public Button signinBtn;
     public ButtonBar languageBtn;
@@ -27,6 +21,8 @@ public class PocetniController {
     public ToggleGroup choiceRole;
     public RadioButton User;
     public RadioButton Administrator;
+    public TextField usernameField;
+    public PasswordField passwordField;
 
     DatabaseDAO dao = DatabaseDAO.getInstance();
 
@@ -37,8 +33,8 @@ public class PocetniController {
     @FXML
     public void initialize(){
         User.setSelected(true);
-       // User.requestFocus();
     }
+
 
     public void registrationAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)registerBtn.getScene().getWindow();
@@ -47,14 +43,30 @@ public class PocetniController {
         stage.setTitle("Registration");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-
-
-
     }
 
+
     public void RoleSignInAction(ActionEvent actionEvent) throws IOException {
-        if(!choiceRole.getSelectedToggle().isSelected()) return;
-        else if(User.isSelected()){
+        User usr = dao.getUser(usernameField.getText(), passwordField.getText());
+        Administrator admin = dao.getAdministrator(usernameField.getText(), passwordField.getText());
+
+        if(usernameField.getText().trim().isEmpty() || passwordField.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("You have to write your username and password");
+            alert.setContentText("Fill in the fields and try again");
+            alert.showAndWait();
+        }
+
+       else if(usr==null && User.isSelected() || admin==null && Administrator.isSelected()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid username of password!");
+            alert.setContentText("Click OK and try again");
+            alert.showAndWait();
+        }
+
+         if(User.isSelected() && usr!=null){
             Stage stage = (Stage)registerBtn.getScene().getWindow();
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/user.fxml"));
@@ -62,7 +74,7 @@ public class PocetniController {
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
         }
-        else{
+        else if(Administrator.isSelected() && admin!=null){
             Stage stage = (Stage)registerBtn.getScene().getWindow();
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
@@ -70,6 +82,6 @@ public class PocetniController {
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
         }
-
     }
+
 }

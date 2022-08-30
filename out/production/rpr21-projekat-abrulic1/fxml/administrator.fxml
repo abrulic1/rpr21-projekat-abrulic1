@@ -37,7 +37,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </VBox.margin>
                                         </Button>
-                                        <Button fx:id="editUserBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="%editBtnTbl">
+                                        <Button fx:id="editUserBtn" mnemonicParsing="false" onAction="#editUserAction" prefHeight="26.0" prefWidth="91.0" text="%editBtnTbl">
                                             <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </VBox.margin>

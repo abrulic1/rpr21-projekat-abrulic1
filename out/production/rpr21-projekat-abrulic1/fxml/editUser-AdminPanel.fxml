@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefWidth="396.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/register.css" />
+    </stylesheets>
+    <center>
+        <GridPane prefHeight="550.0" prefWidth="397.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="136.2" prefWidth="143.2" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.8" minWidth="193.0" prefWidth="254.8" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label fx:id="editLbl" alignment="CENTER" prefHeight="50.0" prefWidth="396.0" text="%edit" GridPane.columnSpan="2">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font></Label>
+                <Label fx:id="nameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="139.0" text="%name" GridPane.rowIndex="1">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Label fx:id="surnameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="139.0" text="%surname" GridPane.rowIndex="3">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <TextField fx:id="nameFld" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin></TextField>
+                <PasswordField fx:id="passwordFld" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin></PasswordField>
+                <Label fx:id="emailLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="139.0" text="%email" GridPane.rowIndex="5">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Label fx:id="usernameLbl" alignment="CENTER" prefHeight="40.0" prefWidth="138.0" text="%username" GridPane.rowIndex="7">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding></Label>
+                <Label fx:id="passwordLbl" alignment="CENTER" prefHeight="40.0" prefWidth="140.0" text="%password" GridPane.rowIndex="9">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <TextField fx:id="surnameFld" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </TextField>
+                <TextField fx:id="emailFld" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </TextField>
+                <Label fx:id="usernameLabelErrorText" alignment="BOTTOM_LEFT" prefHeight="3.0" prefWidth="228.0" textAlignment="CENTER" textFill="#e20202" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameFld" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </TextField>
+                <Label fx:id="passwordLengthLabel" prefHeight="18.0" prefWidth="244.0" textFill="#e20202" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                    <font>
+                        <Font size="10.0" />
+                    </font></Label>
+                <Label GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <Label GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <Label GridPane.columnIndex="1" GridPane.rowIndex="6">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="11">
+              <buttons>
+                <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancelBtnAction" prefHeight="36.0" text="%cancel" />
+                  <Button fx:id="okBtn" mnemonicParsing="false" onAction="#okBtnAction" prefHeight="36.0" text="%ok" />
+              </buttons>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ButtonBar>
+            <RadioButton fx:id="maleBtn" mnemonicParsing="false" text="Musko" GridPane.rowIndex="10">
+               <toggleGroup>
+                  <ToggleGroup fx:id="polGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="femaleBtn" mnemonicParsing="false" text="Zensko" toggleGroup="$polGroup" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>

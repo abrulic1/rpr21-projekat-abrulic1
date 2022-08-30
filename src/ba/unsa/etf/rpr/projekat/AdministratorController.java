@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,13 +20,13 @@ import java.util.ResourceBundle;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class AdministratorController {
-    public TableColumn idUserTblColumn;
-    public TableColumn nameUserTblColumn;
-    public TableColumn surnameUserTblColumn;
-    public TableColumn emailUserTblColumn;
-    public TableColumn usernameUserTblColumn;
-    public TableColumn passwordUserTblColumn;
-    public TableColumn genderUserTblColumn;
+    public TableColumn<Integer, User> idUserTblColumn;
+    public TableColumn<String, User> nameUserTblColumn;
+    public TableColumn<String, User> surnameUserTblColumn;
+    public TableColumn<String, User> emailUserTblColumn;
+    public TableColumn<String, User> usernameUserTblColumn;
+    public TableColumn<String, User> passwordUserTblColumn;
+    public TableColumn<String, User> genderUserTblColumn;
     public Button addUserBtn;
     public Button deleteUserBtn;
     public Button editUserBtn;
@@ -48,9 +49,10 @@ public class AdministratorController {
     public Button deleteMenuBtn;
     public Button printMenuBtn;
     public Button signoutBtn;
-    public TableView usersTableView;
+    public TableView<User> usersTableView;
     public TableView reservationsTableView;
     public TableView menuTableView;
+    ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     DatabaseDAO dao = DatabaseDAO.getInstance();
 
@@ -70,7 +72,6 @@ public class AdministratorController {
     }
 
     public void signOutBtnAction(ActionEvent actionEvent) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         Stage stage = (Stage) signoutBtn.getScene().getWindow();
         stage.close();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"), bundle);
@@ -82,7 +83,6 @@ public class AdministratorController {
 
     public void addUserBtnAction(ActionEvent actionEvent) throws IOException, SQLException {
         AddUserController kontroler = new AddUserController();
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         loader.setController(kontroler);
@@ -98,7 +98,6 @@ public class AdministratorController {
 
     public void deleteUserAction(ActionEvent actionEvent) {
         User usr = (User) usersTableView.getSelectionModel().getSelectedItem();
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         if(usr!=null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(bundle.getString("confirmation"));
@@ -119,5 +118,39 @@ public class AdministratorController {
             }
         }
 
+    }
+
+    public void editUserAction(ActionEvent actionEvent) throws IOException, SQLException {
+        if(usersTableView.getSelectionModel().getSelectedItem()!=null) {
+            User usr = usersTableView.getSelectionModel().getSelectedItem();
+            EditUserController kontroler = new EditUserController(usr.getId());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editUser-AdminPanel.fxml"), bundle);
+            loader.setController(kontroler);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle(bundle.getString("add_user")); //////////
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            kontroler.usernameFld.setText(usr.getUsername());
+            kontroler.nameFld.setText(usr.getName());
+            kontroler.surnameFld.setText(usr.getSurname());
+            kontroler.emailFld.setText(usr.getEmail());
+            kontroler.passwordFld.setText(usr.getPassword());
+            Platform.runLater(() -> kontroler.passwordFld.setVisible(true));   //ne radi ovo..
+            if(usr.getGender().equals("Female"))
+                kontroler.femaleBtn.setSelected(true);
+            else kontroler.maleBtn.setSelected(true);
+            stage.showAndWait();
+            usersTableView.getItems().clear();
+            usersTableView.setItems(dao.returnAllUsers());
+            usersTableView.refresh();
+            /////////////////MOGU I SETONHIDING OVDJE UMJESTO OVE 3 LINIJE /////////////////////////
+        }
+
+//        Stage stage = new Stage();
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/editUser-AdminPanel.fxml"), bundle);
+//        stage.setTitle(bundle.getString("edit"));
+//        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+//        stage.showAndWait();
     }
 }

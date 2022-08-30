@@ -15,7 +15,7 @@ public class DatabaseDAO {
     private Connection conn;
     private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
                               allUsersUsernameStatement, allAdminsUsernameStatement;
-    private PreparedStatement deleteUserFromBase;
+    private PreparedStatement deleteUserFromBase, updateUserStatement;
 
     private static DatabaseDAO instance = null;
 
@@ -41,6 +41,7 @@ public class DatabaseDAO {
             allUsersUsernameStatement = conn.prepareStatement("SELECT * FROM users WHERE username=?");
             allAdminsUsernameStatement = conn.prepareStatement("SELECT * FROM admins WHERE username=?");
             deleteUserFromBase = conn.prepareStatement("DELETE FROM users WHERE id=?");
+            updateUserStatement = conn.prepareStatement("UPDATE users SET name=?, surname=?, username=?, email=?, password=?, gender=? WHERE id=?");
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -189,6 +190,23 @@ public class DatabaseDAO {
         try {
             deleteUserFromBase.setInt(1, id);
             deleteUserFromBase.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void editUser(String name, String surname, String email, String username, String password, String pol, int id) {
+        //UPDATE users SET name=?, surname=?, username=?, email=?, password=?, gender=? WHERE id=?"
+        try {
+            updateUserStatement.setString(1, name);
+            updateUserStatement.setString(2, surname);
+            updateUserStatement.setString(3, username);
+            updateUserStatement.setString(4, email);
+            updateUserStatement.setString(5, password);
+            updateUserStatement.setString(6, pol);
+            updateUserStatement.setInt(7, id);
+            updateUserStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

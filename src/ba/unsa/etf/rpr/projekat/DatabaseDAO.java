@@ -1,9 +1,13 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -11,6 +15,7 @@ public class DatabaseDAO {
     private Connection conn;
     private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
                               allUsersUsernameStatement, allAdminsUsernameStatement;
+
     private static DatabaseDAO instance = null;
 
     //Constructor
@@ -138,7 +143,7 @@ public class DatabaseDAO {
 
 
     //add new user in database
-    public void addNewUser(String name, String surname, String email, String username, String password, String selectedToggle) {
+    public User addNewUser(String name, String surname, String email, String username, String password, String selectedToggle) {
         int id= 1;
         try {
             ResultSet rs = findMaxIdStatement.executeQuery();
@@ -158,5 +163,20 @@ public class DatabaseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        User usr = new User(id, name, surname, email, username, password, selectedToggle);
+        return usr;
+    }
+
+
+    public ObservableList<User> returnAllUsers(){
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+                 users.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return FXCollections.observableList(users);
     }
 }

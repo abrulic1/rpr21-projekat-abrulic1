@@ -1,0 +1,7 @@
+.CorrectInput{
+    -fx-background-color: yellowgreen;
+}
+
+.IncorrectInput{
+    -fx-background-color: lightpink;
+}

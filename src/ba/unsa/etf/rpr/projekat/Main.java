@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Locale.setDefault(new Locale("en_US"));
-        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/login.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/administrator.fxml"), bundle);
         Scene scene = new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         stage.setTitle("Login");
         stage.getIcons().add(new Image("/images/user-icon.png"));

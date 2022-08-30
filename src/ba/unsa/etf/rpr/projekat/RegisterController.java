@@ -50,8 +50,6 @@ public class RegisterController {
     public void initialize() throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         femaleBttn.setSelected(true);
-        if(usernameFld.getText().trim().isEmpty()) usernameLabelErrorText.setText("");
-        if(passwordFld.getText().isEmpty()) passwordLengthLabel.setText("");
         //nameField validation
         nameFld.textProperty().addListener((obs, old, n) -> {
             if (!nameFld.getText().trim().isEmpty()) {

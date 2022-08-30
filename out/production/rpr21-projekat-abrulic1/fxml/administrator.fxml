@@ -32,7 +32,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </VBox.margin>
                                         </Button>
-                                        <Button fx:id="deleteUserBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="%deleteBtnTbl">
+                                        <Button fx:id="deleteUserBtn" mnemonicParsing="false" onAction="#deleteUserAction" prefHeight="26.0" prefWidth="90.0" text="%deleteBtnTbl">
                                             <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </VBox.margin>

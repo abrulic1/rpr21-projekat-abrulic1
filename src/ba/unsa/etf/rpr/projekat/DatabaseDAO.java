@@ -15,6 +15,7 @@ public class DatabaseDAO {
     private Connection conn;
     private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
                               allUsersUsernameStatement, allAdminsUsernameStatement;
+    private PreparedStatement deleteUserFromBase;
 
     private static DatabaseDAO instance = null;
 
@@ -39,6 +40,7 @@ public class DatabaseDAO {
             addNewUserStatement=conn.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?,?)");
             allUsersUsernameStatement = conn.prepareStatement("SELECT * FROM users WHERE username=?");
             allAdminsUsernameStatement = conn.prepareStatement("SELECT * FROM admins WHERE username=?");
+            deleteUserFromBase = conn.prepareStatement("DELETE FROM users WHERE id=?");
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -178,5 +180,17 @@ public class DatabaseDAO {
             e.printStackTrace();
         }
     return FXCollections.observableList(users);
+    }
+
+
+
+
+    public void deleteUser(int id){
+        try {
+            deleteUserFromBase.setInt(1, id);
+            deleteUserFromBase.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

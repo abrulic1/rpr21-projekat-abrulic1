@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -16,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -96,5 +94,30 @@ public class AdministratorController {
         usersTableView.getItems().clear();
         usersTableView.setItems(dao.returnAllUsers());
         usersTableView.refresh();
+    }
+
+    public void deleteUserAction(ActionEvent actionEvent) {
+        User usr = (User) usersTableView.getSelectionModel().getSelectedItem();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
+        if(usr!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(bundle.getString("confirmation"));
+            alert.setHeaderText(bundle.getString("confirmation_text"));
+            alert.setContentText(bundle.getString("confirmation_question"));
+            ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText(bundle.getString("cancel"));
+            ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText(bundle.getString("ok"));
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // ... user chose OK
+                dao.deleteUser(usr.getId());
+                usersTableView.getItems().clear();
+                usersTableView.setItems(dao.returnAllUsers());
+                usersTableView.refresh();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+
+            }
+        }
+
     }
 }

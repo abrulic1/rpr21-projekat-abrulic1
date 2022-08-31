@@ -8,11 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -31,27 +32,27 @@ public class AdministratorController {
     public Button deleteUserBtn;
     public Button editUserBtn;
     public Button printUserBtn;
-    public TableColumn idReservationTblColumn;
-    public TableColumn codeReservationTblColumn;
-    public TableColumn timeReservationTblColumn;
-    public TableColumn nogReservationTblColumn;
+    public TableColumn<Integer, Reservation> idReservationTblColumn;
+    public TableColumn<LocalDate, Reservation> dateReservationTblColumn;
+    public TableColumn<String, Reservation> timeReservationTblColumn;
     public Button addReservationBtn;
     public Button deleteReservationBtn;
     public Button editReservationBtn;
     public Button printReservationBtn;
-    public TableColumn idMenuTblColumn;
-    public TableColumn nameMenuTblColumn;
-    public TableColumn priceMenuTblColumn;
-    public TableColumn veganMenuTblColumn;
-    public TableColumn vegetarianMenuTblColumn;
+    public TableColumn<Integer, MenuItem> idMenuTblColumn;
+    public TableColumn<String, MenuItem> nameMenuTblColumn;
+    public TableColumn<Double, MenuItem> priceMenuTblColumn;
+    public TableColumn<String, MenuItem> veganMenuTblColumn;
+    public TableColumn<String, MenuItem> vegetarianMenuTblColumn;
     public Button addMenuBtn;
-    public Button modifyMenuBtn;
+    public Button editMenuBtn;
     public Button deleteMenuBtn;
     public Button printMenuBtn;
     public Button signoutBtn;
     public TableView<User> usersTableView;
-    public TableView reservationsTableView;
-    public TableView menuTableView;
+    public TableView<Reservation> reservationsTableView;
+    public TableView<MenuItem> menuTableView;
+    public TableColumn<Integer, Reservation> guestsReservationTable;
     ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     DatabaseDAO dao = DatabaseDAO.getInstance();
@@ -69,6 +70,17 @@ public class AdministratorController {
         passwordUserTblColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         genderUserTblColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         usersTableView.setItems(dao.returnAllUsers());
+        idReservationTblColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        dateReservationTblColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        timeReservationTblColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        guestsReservationTable.setCellValueFactory(new PropertyValueFactory<>("numberOfGuests"));
+        reservationsTableView.setItems(dao.returnAllReservations());
+        idMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        veganMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("vegan"));
+        vegetarianMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("vegetarian"));
+        menuTableView.setItems(dao.returnAllMenuItems());
     }
 
     public void signOutBtnAction(ActionEvent actionEvent) throws IOException {
@@ -146,11 +158,64 @@ public class AdministratorController {
             usersTableView.refresh();
             /////////////////MOGU I SETONHIDING OVDJE UMJESTO OVE 3 LINIJE /////////////////////////
         }
+    }
 
-//        Stage stage = new Stage();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/editUser-AdminPanel.fxml"), bundle);
-//        stage.setTitle(bundle.getString("edit"));
-//        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//        stage.showAndWait();
+    public void addReservationAction(ActionEvent actionEvent) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Locale.setDefault(new Locale("en_US"));
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/addReservation-AdminPanel.fxml"), bundle);
+        Scene scene = new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        Stage stage = new Stage();
+        stage.setTitle("Add Reservation");
+       // stage.getIcons().add(new Image("/images/user-icon.png"));
+        stage.setScene(scene);
+        stage.toFront();
+        stage.setResizable(false);
+        stage.showAndWait();
+         reservationsTableView.getItems().clear();
+         reservationsTableView.setItems(dao.returnAllReservations());
+         reservationsTableView.refresh();
+
+    }
+
+    public void deleteReservationAction(ActionEvent actionEvent) {
+//        Reservation reservation = reservationsTableView.getSelectionModel().getSelectedItem();
+//        if(reservation!=null){
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle(bundle.getString("confirmation"));
+//           // alert.setHeaderText(bundle.getString("confirmation_text"));
+//            //alert.setContentText(bundle.getString("confirmation_question"));
+//            ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText(bundle.getString("cancel"));
+//            ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText(bundle.getString("ok"));
+//            Optional<ButtonType> result = alert.showAndWait();
+//            if (result.get() == ButtonType.OK){
+//                // ... user chose OK
+//                dao.deleteReservation(reservation.getId());
+//                reservationsTableView.getItems().clear();
+//                reservationsTableView.setItems(dao.returnAllReservations());
+//                reservationsTableView.refresh();
+//            } else {
+//                // ... user chose CANCEL or closed the dialog
+//
+//            }
+//        }
+    }
+
+    public void editReservationAction(ActionEvent actionEvent) {
+    }
+
+    public void printReservationAction(ActionEvent actionEvent) {
+    }
+
+    public void addMenuAction(ActionEvent actionEvent) {
+    }
+
+    public void deleteMenuAction(ActionEvent actionEvent) {
+    }
+
+    public void editMenuAction(ActionEvent actionEvent) {
+    }
+
+    public void printMenuAction(ActionEvent actionEvent) {
     }
 }

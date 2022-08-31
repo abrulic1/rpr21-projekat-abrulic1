@@ -1,23 +1,19 @@
 package ba.unsa.etf.rpr.projekat;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reservation {
     private int id;
-    private String code;
-    private Date time;
+    private LocalDate date;
+    private String time;
     private int numberOfGuests;
 
-    public Reservation(int id, String code, Date time, int numberOfGuests) {
+    public Reservation(int id, LocalDate date, String time, int numberOfGuests) {
         this.id = id;
-        this.code = code;
+        this.date = date;
         this.time = time;
         this.numberOfGuests = numberOfGuests;
-    }
-
-    public Reservation() {
     }
 
     public int getId() {
@@ -28,19 +24,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

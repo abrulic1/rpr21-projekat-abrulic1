@@ -18,23 +18,24 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"gender"	TEXT,
 	PRIMARY KEY("id")
 );
-CREATE TABLE IF NOT EXISTS "reservations" (
-	"id"	INTEGER,
-	"code"	TEXT,
-	"time"	TEXT,
-	"number of guests"	INTEGER,
-	PRIMARY KEY("id")
-);
 CREATE TABLE IF NOT EXISTS "menuitem" (
 	"id"	INTEGER,
 	"name"	TEXT,
 	"price"	REAL,
-	"vegan"	INTEGER,
-	"vegetarian"	INTEGER,
+	"vegan"	TEXT,
+	"vegetarian"	TEXT,
+	PRIMARY KEY("id")
+);
+CREATE TABLE IF NOT EXISTS "reservations" (
+	"id"	INTEGER,
+	"date"	TEXT,
+	"time"	TEXT,
+	"guests"	INTEGER,
 	PRIMARY KEY("id")
 );
 INSERT INTO "admins" VALUES (1,'Almina','Brulic','alminabr@hotmail.com','admin','admin');
-INSERT INTO "users" VALUES (1,'Neko','Nekic','neko@gmail.com','nnekic','nnekic','Musko');
-INSERT INTO "reservations" VALUES (1,'ddd3222d','13.4.2022.08:20',3);
-INSERT INTO "menuitem" VALUES (1,'spaghetti',10.0,0,1);
+INSERT INTO "users" VALUES (1,'Neko','Nekiccccccc','neko@gmail.com','nnekic','nnekic','Male');
+INSERT INTO "users" VALUES (2,'ok','sd','dsds','dsdsd','sddsdsdsdssd','Female');
+INSERT INTO "menuitem" VALUES (1,'spagetthi',10.0,'no','yes');
+INSERT INTO "reservations" VALUES (1,'09/09/2022','09:00',3);
 COMMIT;

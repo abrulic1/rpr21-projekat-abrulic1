@@ -4,9 +4,9 @@ public class MenuItem {
     private int id;
     private String name;
     private double price;
-    private boolean vegan, vegetarian;
+    private String vegan, vegetarian;
 
-    public MenuItem(int id, String name, double price, boolean vegan, boolean vegetarian) {
+    public MenuItem(int id, String name, double price, String vegan, String vegetarian) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -41,19 +41,19 @@ public class MenuItem {
         this.price = price;
     }
 
-    public boolean isVegan() {
+    public String getVegan() {
         return vegan;
     }
 
-    public void setVegan(boolean vegan) {
+    public void setVegan(String vegan) {
         this.vegan = vegan;
     }
 
-    public boolean isVegetarian() {
+    public String getVegetarian() {
         return vegetarian;
     }
 
-    public void setVegetarian(boolean vegetarian) {
+    public void setVegetarian(String vegetarian) {
         this.vegetarian = vegetarian;
     }
 }

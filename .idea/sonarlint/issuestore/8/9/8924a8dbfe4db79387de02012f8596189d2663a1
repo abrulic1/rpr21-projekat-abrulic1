@@ -1,0 +1,51 @@
+
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Áú¼ï
+G
+java:S1172>"2Remove this unused method parameter "actionEvent".(ò²ÿ^
+N
+java:S1854V"9Remove this useless assignment to local variable "stage".(Âº©
+H
+java:S1172D"2Remove this unused method parameter "actionEvent".(”ÌŸ
+?
+java:S1481V"*Remove this unused "stage" local variable.(Âº©
+Y
+java:S11555">Use isEmpty() to check whether the collection is empty or not.(Õ‡®¸ùÿÿÿÿ
+Y
+java:S11555">Use isEmpty() to check whether the collection is empty or not.(Õ‡®¸ùÿÿÿÿ
+T
+java:S11557">Use isEmpty() to check whether the collection is empty or not.(ÅÏÜ
+T
+java:S11557">Use isEmpty() to check whether the collection is empty or not.(ÅÏÜ
+Y
+java:S1155I">Use isEmpty() to check whether the collection is empty or not.(“±¢²ûÿÿÿÿ
+Y
+java:S1155I">Use isEmpty() to check whether the collection is empty or not.(“±¢²ûÿÿÿÿ
+i
+java:S1104"SMake nameFld a static final constant or non-public and provide accessors if needed.(«ôßê
+q
+java:S1104"VMake surnameFld a static final constant or non-public and provide accessors if needed.(ğ÷Ùáùÿÿÿÿ
+j
+java:S1104"TMake emailFld a static final constant or non-public and provide accessors if needed.(¬¥üÖ
+m
+java:S1104"WMake usernameFld a static final constant or non-public and provide accessors if needed.(®Èñõ
+m
+java:S1104"WMake passwordFld a static final constant or non-public and provide accessors if needed.(ÍÔ»
+p
+java:S1104"UMake femaleBtn a static final constant or non-public and provide accessors if needed.(Ô¿Ï˜şÿÿÿÿ
+j
+java:S1104"TMake polGroup a static final constant or non-public and provide accessors if needed.(İºôş
+i
+java:S1104"SMake maleBtn a static final constant or non-public and provide accessors if needed.(Ûê”®
+k
+java:S1104"UMake cancelBtn a static final constant or non-public and provide accessors if needed.(»’’é
+g
+java:S1104"QMake okBtn a static final constant or non-public and provide accessors if needed.(¼ÜòÅ
+}
+java:S1104"bMake usernameLabelErrorText a static final constant or non-public and provide accessors if needed.(ç€á½şÿÿÿÿ
+u
+java:S1104"_Make passwordLengthLabel a static final constant or non-public and provide accessors if needed.(Ê†ÈÃ
+f
+java:S1104"PMake user a static final constant or non-public and provide accessors if needed.(ç­ìø
+b
+java:S3973Q"GUse indentation to denote the code conditionally executed by this "if".(âçàÌşÿÿÿÿ

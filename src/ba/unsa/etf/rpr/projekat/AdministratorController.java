@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -81,6 +83,7 @@ public class AdministratorController {
         veganMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("vegan"));
         vegetarianMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("vegetarian"));
         menuTableView.setItems(dao.returnAllMenuItems());
+
     }
 
     public void signOutBtnAction(ActionEvent actionEvent) throws IOException {

@@ -15,7 +15,7 @@ d
 4src/ba/unsa/etf/rpr/projekat/EditUserController.java,a\a\aa7d5589990fc2406d0a22b7acc69b9bf940c23f
 c
 3src/ba/unsa/etf/rpr/projekat/AddUserController.java,8\9\8924a8dbfe4db79387de02012f8596189d2663a1
-a
-1src/ba/unsa/etf/rpr/projekat/LoginController.java,f\3\f34184d5cf189f1477b4d319f46b87ac75d340f2
 _
 /src/ba/unsa/etf/rpr/projekat/Administrator.java,6\a\6aa87727c8c84ec1aa1453a783347c93dad53ab9
+Z
+*src/ba/unsa/etf/rpr/projekat/MenuItem.java,c\6\c63d096664c2437db21829e8b9d379dc69add191

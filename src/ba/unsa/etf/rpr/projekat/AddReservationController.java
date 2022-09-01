@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.sql.SQLException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -60,8 +62,11 @@ public class AddReservationController {
                     }
                 });
 //        LocalDate localDate = datePickerId.getValue();
-//        LocalDate date = LocalDate.parse(localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//        LocalDate date = LocalDate.parse(localDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 //        datePickerId.setValue(localDate);
+
+//        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        datePickerId.setValue(LocalDate.parse(formatter.format(datePickerId)));
 
 
     }

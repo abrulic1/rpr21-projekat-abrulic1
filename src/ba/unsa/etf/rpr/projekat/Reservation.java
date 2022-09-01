@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Reservation {
@@ -10,6 +11,8 @@ public class Reservation {
     private int numberOfGuests;
 
     public Reservation(int id, LocalDate date, String time, int numberOfGuests) {
+//        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        LocalDate localDate =  LocalDate.parse(date.toString(), format);
         this.id = id;
         this.date = date;
         this.time = time;

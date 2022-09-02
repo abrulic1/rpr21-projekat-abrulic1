@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane styleClass="body" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.ViewMenuController">
+    <stylesheets>
+        <URL value="@/css/viewmenu.css" />
+    </stylesheets>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" prefWidth="470.2" />
+    <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="186.4" minHeight="10.0" prefHeight="67.00000190734863" vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="58.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="3" GridPane.rowSpan="3" />
+      <ListView GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin></ListView>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="%view_our_menu" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+         <font>
+            <Font name="Brush Script MT Italic" size="24.0" />
+         </font>
+      </Label>
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="viewAllBtn" mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+         </children>
+      </VBox>
+   </children>
+</GridPane>

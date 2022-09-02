@@ -4,12 +4,21 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class UserController {
     public ImageView imageView;
@@ -18,6 +27,7 @@ public class UserController {
     public Button signoutBtn;
     ArrayList<Image> images = new ArrayList<>();
     int counter=0;
+    ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     public UserController() {
         images.add(new Image("/images/slide1.jpg"));
@@ -38,12 +48,27 @@ public class UserController {
         tl.play();
     }
 
-    public void viewMenuAction(ActionEvent actionEvent) {
+    public void viewMenuAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)imageView.getScene().getWindow();
+        stage.close();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/user panel/viewMenu.fxml"), bundle);
+        stage.setTitle(bundle.getString("view_our_menu"));
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+
     }
 
     public void reserveTableAction(ActionEvent actionEvent) {
     }
 
-    public void signoutAction(ActionEvent actionEvent) {
+    public void signoutAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) signoutBtn.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"), bundle);
+        stage.setTitle(bundle.getString("login"));
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
     }
 }

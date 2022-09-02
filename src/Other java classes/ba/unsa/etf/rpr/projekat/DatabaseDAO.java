@@ -18,14 +18,17 @@ import java.util.Scanner;
 
 public class DatabaseDAO {
     private Connection conn;
-    private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
-            allUsersUsernameStatement, allAdminsUsernameStatement;
-    private PreparedStatement deleteUserFromBase, updateUserStatement;
-    private PreparedStatement returnAllReservationsStatement, deleteReservationFromBaseStm, returnReservationsByDateStm, findMaxIdReservationStm,
-           insertReservationStm, editReservationStatement;
-    private PreparedStatement returnAllMenuItemsStatement, returnMenuItemsByNameStm, findMaxMenuItemIdStm, insertMenuItemStm, deleteMenuItemStatement,
-            editMenuItemStm;
     private static DatabaseDAO instance = null;
+    /*ADMIN PANEL PREP. STATEMENTS*/
+    private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
+            allUsersUsernameStatement, allAdminsUsernameStatement, deleteUserFromBase, updateUserStatement,
+            returnAllReservationsStatement, deleteReservationFromBaseStm, returnReservationsByDateStm, findMaxIdReservationStm,
+           insertReservationStm, editReservationStatement, returnAllMenuItemsStatement, returnMenuItemsByNameStm,
+            findMaxMenuItemIdStm, insertMenuItemStm, deleteMenuItemStatement, editMenuItemStm;
+
+    /*USER PANEL PREP. STATEMENS*/
+    private PreparedStatement returnAllVeganMealsStm, returnAllVegetarianMealsStm;
+
 
     //Constructor
     private DatabaseDAO() throws SQLException {
@@ -42,6 +45,7 @@ public class DatabaseDAO {
             }
         }
         try {
+            /***************ADMIN PANEL***************/
             findUserStatement = conn.prepareStatement("SELECT * FROM users WHERE username=? AND password=?");
             findAdminStatement = conn.prepareStatement("SELECT * FROM admins WHERE username=? AND password=?");
             findMaxIdStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM users");
@@ -50,7 +54,6 @@ public class DatabaseDAO {
             allAdminsUsernameStatement = conn.prepareStatement("SELECT * FROM admins WHERE username=?");
             deleteUserFromBase = conn.prepareStatement("DELETE FROM users WHERE id=?");
             updateUserStatement = conn.prepareStatement("UPDATE users SET name=?, surname=?, username=?, email=?, password=?, gender=? WHERE id=?");
-
             returnAllReservationsStatement = conn.prepareStatement("SELECT * FROM reservations");
             returnAllMenuItemsStatement = conn.prepareStatement("SELECT * FROM menuitem");
             deleteReservationFromBaseStm=conn.prepareStatement("DELETE FROM reservations WHERE id=?");
@@ -59,16 +62,21 @@ public class DatabaseDAO {
             insertReservationStm=conn.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?)");
             editReservationStatement=conn.prepareStatement("UPDATE reservations SET date=?, time=?, guests=? WHERE id=?");
             findMaxMenuItemIdStm=conn.prepareStatement("SELECT MAX(id)+1 FROM menuitem");
-
             returnMenuItemsByNameStm = conn.prepareStatement("SELECT * FROM menuitem WHERE name=?");
             insertMenuItemStm = conn.prepareStatement("INSERT INTO menuitem VALUES(?,?,?,?,?)");
             deleteMenuItemStatement =conn.prepareStatement("DELETE FROM menuitem WHERE id=?");
             editMenuItemStm=conn.prepareStatement("UPDATE menuitem SET name=?, price=?, vegan=?, vegetarian=? WHERE id=?");
+
+            /**********USER PANEL**************/
+            returnAllVeganMealsStm=conn.prepareStatement("SELECT * FROM menuitem WHERE vegan=?");
+            returnAllVegetarianMealsStm=conn.prepareStatement("SELECT * FROM menuitem WHERE vegetarian=?");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**************************************************************ADMIN PANEL METHODS************************************************************/
     //getInstance for singleton pattern (1x connection on database)
     public static DatabaseDAO getInstance() throws SQLException {
         if (instance == null) instance = new DatabaseDAO();
@@ -397,4 +405,34 @@ public class DatabaseDAO {
         }
 
     }
+
+
+    /*********************************************************************** USER PANEL METHODS****************************************************************************/
+    public ObservableList returnAllVeganMenuItems() {
+        List<MenuItem> menuis = new ArrayList<>();
+        try {
+            returnAllVeganMealsStm.setString(1, "yes");
+            ResultSet rs = returnAllVeganMealsStm.executeQuery();
+            while(rs.next())
+                menuis.add(new MenuItem(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return FXCollections.observableList(menuis);
+    }
+
+    public ObservableList returnAllVegetarianMenuItems() {
+        List<MenuItem> menuis = new ArrayList<>();
+        try {
+            returnAllVegetarianMealsStm.setString(1, "yes");
+            ResultSet rs = returnAllVegetarianMealsStm.executeQuery();
+            while(rs.next())
+                menuis.add(new MenuItem(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return FXCollections.observableList(menuis);
+    }
 }
+
+

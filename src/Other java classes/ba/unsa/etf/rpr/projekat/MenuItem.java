@@ -56,4 +56,10 @@ public class MenuItem {
     public void setVegetarian(String vegetarian) {
         this.vegetarian = vegetarian;
     }
+
+    @Override
+    public String toString(){
+        return name + ", "+price +" dollars";
+    }
+
 }

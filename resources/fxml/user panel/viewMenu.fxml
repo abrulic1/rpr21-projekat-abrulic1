@@ -34,15 +34,15 @@
       </Label>
       <VBox prefHeight="402.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="viewAllBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="%viewAll">
+            <Button fx:id="viewAllBtn" mnemonicParsing="false" onMouseClicked="#viewAllAction" prefHeight="26.0" prefWidth="80.0" text="%viewAll">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Button>
-            <Button fx:id="veganBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="%viewVegan">
+            <Button fx:id="veganBtn" mnemonicParsing="false" onMouseClicked="#viewVeganAction" prefHeight="26.0" prefWidth="80.0" text="%viewVegan">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Button>
-            <Button fx:id="vegetarianBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="%viewVegetarian">
+            <Button fx:id="vegetarianBtn" mnemonicParsing="false" onMouseClicked="#viewVegetarianAction" prefHeight="26.0" prefWidth="90.0" text="%viewVegetarian">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Button>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdministratorController">
+    <center>
+        <TabPane prefHeight="356.0" prefWidth="715.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab fx:id="tabUsers" text="%users">
+                    <content>
+                        <BorderPane>
+                            <center>
+                                <TableView fx:id="usersTableView" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="idUserTblColumn" maxWidth="50.0" prefWidth="50.0" text="%idTable" />
+                                        <TableColumn fx:id="nameUserTblColumn" maxWidth="95.0" prefWidth="95.0" text="%nameTable" />
+                                        <TableColumn fx:id="surnameUserTblColumn" maxWidth="95.0" prefWidth="95.0" text="%surnameTable" />
+                                        <TableColumn fx:id="emailUserTblColumn" maxWidth="95.0" prefWidth="95.0" text="%emailTable" />
+                                        <TableColumn fx:id="usernameUserTblColumn" maxWidth="95.0" prefWidth="95.0" text="%usernameTable" />
+                                        <TableColumn fx:id="passwordUserTblColumn" maxWidth="95.0" prefWidth="95.0" text="%passwordTable" />
+                                        <TableColumn fx:id="genderUserTblColumn" maxWidth="85.0" prefWidth="85.0" text="%genderTable" />
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <right>
+                                <VBox fx:id="vbox" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="addUserBtn" mnemonicParsing="false" onAction="#addUserBtnAction" prefHeight="30.0" prefWidth="80.0" text="%addBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="deleteUserBtn" mnemonicParsing="false" onAction="#deleteUserAction" prefHeight="30.0" prefWidth="80.0" text="%deleteBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="editUserBtn" mnemonicParsing="false" onAction="#editUserAction" prefHeight="30.0" prefWidth="80.0" text="%editBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="printUserBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="%printBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin></Button>
+                                        <Label alignment="CENTER" text="%total_number">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <Label fx:id="totalNumberId" alignment="CENTER" prefHeight="18.0" prefWidth="81.0" text="0">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                    </children></VBox>
+                            </right></BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="%reservations">
+                    <content>
+                        <BorderPane>
+                            <center>
+                                <TableView fx:id="reservationsTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="idReservationTblColumn" maxWidth="98.0" prefWidth="98.0" text="%idTable" />
+                                        <TableColumn fx:id="dateReservationTblColumn" maxWidth="209.0" prefWidth="209.0" text="%dateTable" />
+                                        <TableColumn fx:id="timeReservationTblColumn" maxWidth="203.0" prefWidth="183.19992065429688" text="%timeTable" />
+                                        <TableColumn fx:id="guestsReservationTable" maxWidth="131.0" prefWidth="131.0" text="%numberOfGuestsTbl" />
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <right>
+                                <VBox BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="addReservationBtn" mnemonicParsing="false" onAction="#addReservationAction" prefHeight="30.0" prefWidth="80.0" text="%addBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="deleteReservationBtn" mnemonicParsing="false" onAction="#deleteReservationAction" prefHeight="30.0" prefWidth="80.0" text="%deleteBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="editReservationBtn" mnemonicParsing="false" onAction="#editReservationAction" prefHeight="30.0" prefWidth="80.0" text="%editBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="printReservationBtn" mnemonicParsing="false" onAction="#printReservationAction" prefHeight="30.0" prefWidth="80.0" text="%printBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin></Button>
+                                        <Label text="%total_number">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <Label fx:id="totalReservations" alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="0">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                    </children></VBox>
+                            </right></BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="%menu">
+                    <content>
+                        <BorderPane>
+                            <center>
+                                <TableView fx:id="menuTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="idMenuTblColumn" maxWidth="98.0" prefWidth="98.0" text="%idTable" />
+                                        <TableColumn fx:id="nameMenuTblColumn" maxWidth="158.0" prefWidth="158.0" text="%nameTable" />
+                                        <TableColumn fx:id="priceMenuTblColumn" maxWidth="140.0" prefWidth="140.0" text="%priceTable" />
+                                        <TableColumn fx:id="veganMenuTblColumn" maxWidth="117.0" prefWidth="117.0" text="%veganTable" />
+                                        <TableColumn fx:id="vegetarianMenuTblColumn" maxWidth="117.0" prefWidth="117.0" text="%vegetarianTable" />
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <right>
+                                <VBox BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="addMenuBtn" mnemonicParsing="false" onAction="#addMenuAction" prefHeight="30.0" prefWidth="80.0" text="%addBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="deleteMenuBtn" mnemonicParsing="false" onAction="#deleteMenuAction" prefHeight="30.0" prefWidth="80.0" text="%deleteBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="editMenuBtn" mnemonicParsing="false" onAction="#editMenuAction" prefHeight="30.0" prefWidth="80.0" text="%editBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                        <Button fx:id="printMenuBtn" mnemonicParsing="false" onAction="#printMenuAction" prefHeight="30.0" prefWidth="80.0" text="%printBtnTbl">
+                                            <VBox.margin>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                            </VBox.margin>
+                                        </Button>
+                              <Label prefHeight="18.0" prefWidth="73.0" text="%total_number">
+                                 <VBox.margin>
+                                    <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="totalMenus" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="71.0" text="0">
+                                 <VBox.margin>
+                                    <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                                    </children>
+                                </VBox>
+                            </right></BorderPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+    <right>
+
+    </right>
+    <bottom>
+        <ButtonBar BorderPane.alignment="CENTER">
+            <buttons>
+                <Button fx:id="signoutBtn" mnemonicParsing="false" onAction="#signOutBtnAction" prefHeight="30.0" prefWidth="80.0" text="%signoutBtnTbl" />
+            </buttons>
+            <BorderPane.margin>
+                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+            </BorderPane.margin>
+        </ButtonBar>
+    </bottom>
+</BorderPane>

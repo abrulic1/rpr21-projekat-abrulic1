@@ -5,3 +5,8 @@
 .IncorrectInput{
     -fx-background-color: lightpink;
 }
+
+#gridPane{
+    -fx-background-color: #00001a;
+}
+

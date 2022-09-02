@@ -21,5 +21,3 @@ p
 @src/Other java classes/ba/unsa/etf/rpr/projekat/Reservation.java,9\e\9eed1672ebf7e992b49df9c2917f7d461bec4876
 i
 9src/Other java classes/ba/unsa/etf/rpr/projekat/User.java,1\1\1167cf62c5c72eb7ffa02db5c602d2e1fe01f55a
-s
-Csrc/Other java classes/ba/unsa/etf/rpr/projekat/UserController.java,2\2\2227c1e97c9fb5415d3c588251c21c7f223907b0

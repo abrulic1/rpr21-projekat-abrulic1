@@ -1,0 +1,25 @@
+#titleLabel{
+    -fx-text-fill: black;
+    -fx-background-color: lightgrey;
+}
+
+.buttons{
+    -fx-border-radius: 12px;
+    -fx-background-color: #00091a;
+    -fx-text-fill: white;
+}
+
+.buttons:hover{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+#borderpane{
+    -fx-background-color: #0d0d0d;
+    -fx-text-fill: white;
+}
+
+.buttons:pressed{
+    -fx-background-color: #000d1a;
+    -fx-text-fill: white;
+}

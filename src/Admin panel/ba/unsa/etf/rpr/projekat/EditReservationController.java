@@ -27,6 +27,7 @@ public class EditReservationController {
     int editReservationId;
     DatabaseDAO dao = DatabaseDAO.getInstance();
     ArrayList<String> time=new ArrayList<>();
+    ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     public EditReservationController(int id) throws SQLException {
         editReservationId=id;
@@ -81,14 +82,14 @@ public class EditReservationController {
         String[] numbers = numberOfGuestsLbl.getText().split(" ");
         int number = Integer.parseInt(numbers[0]);
         if(number==1) return;
-        numberOfGuestsLbl.setText(String.valueOf((number-1))+" Guests");
+        numberOfGuestsLbl.setText(String.valueOf((number-1)) + " " +bundle.getString("guests"));
     }
 
     public void plusBtnAction(ActionEvent actionEvent) {
         String[] numbers = numberOfGuestsLbl.getText().split(" ");
         int number = Integer.parseInt(numbers[0]);
         if(number==1) return;
-        numberOfGuestsLbl.setText(String.valueOf((number+1))+" Guests");
+        numberOfGuestsLbl.setText(String.valueOf((number+1))+ " " +bundle.getString("guests"));
     }
 
     public void cancelBtnAction(ActionEvent actionEvent) {

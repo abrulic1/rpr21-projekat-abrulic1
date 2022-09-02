@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.SwipeEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,6 +53,7 @@ public class LoginController {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"), bundle);
         stage.setTitle(bundle.getString("register"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -132,5 +135,4 @@ public class LoginController {
         bundle = ResourceBundle.getBundle("Translation_de_DE", locale);
         setTranslation(bundle);
     }
-
 }

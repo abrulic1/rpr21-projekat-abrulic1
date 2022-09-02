@@ -25,6 +25,7 @@ public class AddReservationController {
     public ChoiceBox<String> timeChoiceBox;
     DatabaseDAO dao = DatabaseDAO.getInstance();
     ArrayList<String> time = new ArrayList<>();
+    ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     public AddReservationController() throws SQLException {
         time.add("11:00 AM");
@@ -79,13 +80,13 @@ public class AddReservationController {
         String[] numbers = numberOfGuestsLabel.getText().split(" ");
         int number = Integer.parseInt(numbers[0]);
         if(number==1) return;
-        numberOfGuestsLabel.setText(String.valueOf((number-1))+" Guests");
+        numberOfGuestsLabel.setText(String.valueOf((number-1))+ " " +bundle.getString("guests"));
     }
 
     public void plusBtnAction(ActionEvent actionEvent) {
         String[] numbers = numberOfGuestsLabel.getText().split(" ");
         int number = Integer.parseInt(numbers[0]);
-        numberOfGuestsLabel.setText(String.valueOf((number+1)) + " Guests");
+        numberOfGuestsLabel.setText(String.valueOf((number+1))+ " " +bundle.getString("guests"));
     }
 
     public void cancelBtnAction(ActionEvent actionEvent) {

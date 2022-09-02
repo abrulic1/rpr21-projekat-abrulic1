@@ -1,0 +1,23 @@
+
+E
+java:S3740"/Provide the parametrized type for this generic.(¤å¿³
+‰
+java:S1130"sRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from constructor's body.(®€ ¾
+G
+java:S1172"2Remove this unused method parameter "actionEvent".(ò²ÿ^
+H
+java:S1172#"2Remove this unused method parameter "actionEvent".(”ÌŸ
+p
+java:S1104"UMake nameField a static final constant or non-public and provide accessors if needed.(¾Àˆÿÿÿÿÿ
+n
+java:S1104"SMake veganId a static final constant or non-public and provide accessors if needed.(ú¯¨øÿÿÿÿ
+m
+java:S1104"XMake vegetarianId a static final constant or non-public and provide accessors if needed.(ö†µ
+k
+java:S1104"UMake cancelBtn a static final constant or non-public and provide accessors if needed.(»’’é
+g
+java:S1104"QMake okBtn a static final constant or non-public and provide accessors if needed.(¼ÜòÅ
+u
+java:S1104"_Make nameMenuAlreadyUsed a static final constant or non-public and provide accessors if needed.(çÆÂ³
+l
+java:S1104"VMake priceField a static final constant or non-public and provide accessors if needed.(¤å¿³

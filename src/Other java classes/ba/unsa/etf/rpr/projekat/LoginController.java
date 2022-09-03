@@ -48,7 +48,7 @@ public class LoginController {
     @FXML
     public void initialize(){
         User.setSelected(true);
-        passwordField.requestFocus();
+        usernameField.requestFocus();
     }
 
 
@@ -64,7 +64,7 @@ public class LoginController {
     }
 
 
-    public void RoleSignInAction(ActionEvent actionEvent) throws IOException {
+    public void RoleSignInAction(ActionEvent actionEvent) throws IOException, SQLException {
         User usr = dao.getUser(usernameField.getText(), passwordField.getText());
         Administrator admin = dao.getAdministrator(usernameField.getText(), passwordField.getText());
 
@@ -85,12 +85,30 @@ public class LoginController {
         }
 
          if(User.isSelected() && usr!=null){
-            Stage stage = (Stage)registerBtn.getScene().getWindow();
-            stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/user panel/user-main.fxml"), bundle);
-            stage.setTitle(bundle.getString("user"));
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.show();
+//            Stage stage = (Stage)registerBtn.getScene().getWindow();
+//            stage.close();
+//            ViewMenuController kontroler = new ViewMenuController(usernameField.getText());
+//             stage = new Stage();
+//             FXMLLoader loader = new FXMLLoader();
+//             loader.setController(kontroler);
+//             loader = new FXMLLoader(getClass().getResource("/fxml/user panel/viewMenu.fxml"), bundle);
+//             Parent root = loader.load();
+//             stage.setTitle(bundle.getString("user"));
+//             stage.getIcons().add(new Image("/images/add-user.png"));
+//             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+//             stage.setResizable(false);
+//             stage.showAndWait();
+//            stage.show();
+
+             Stage stage = (Stage)registerBtn.getScene().getWindow();
+             stage.close();
+             Parent root = FXMLLoader.load(getClass().getResource("/fxml/user panel/user-main.fxml"), bundle);
+             stage.getIcons().add(new Image("/images/admin.png"));
+             stage.setTitle(bundle.getString("administrator"));
+             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+             stage.setResizable(true);
+             stage.show();
+
         }
         else if(Administrator.isSelected() && admin!=null){
             Stage stage = (Stage)registerBtn.getScene().getWindow();

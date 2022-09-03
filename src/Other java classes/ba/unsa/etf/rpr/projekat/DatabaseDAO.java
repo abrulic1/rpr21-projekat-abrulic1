@@ -27,7 +27,7 @@ public class DatabaseDAO {
             findMaxMenuItemIdStm, insertMenuItemStm, deleteMenuItemStatement, editMenuItemStm;
 
     /*USER PANEL PREP. STATEMENS*/
-    private PreparedStatement returnAllVeganMealsStm, returnAllVegetarianMealsStm;
+    private PreparedStatement returnAllVeganMealsStm, returnAllVegetarianMealsStm, addOnWishlistStatement, findMaxIdFromWishlistStatement;
 
 
     //Constructor

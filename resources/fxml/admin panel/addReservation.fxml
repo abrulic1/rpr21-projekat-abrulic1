@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="313.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AddReservationController">
-   <center>
-      <GridPane prefHeight="448.0" prefWidth="338.0" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="313.0" prefWidth="315.0" styleClass="body" stylesheets="@../../css/reservation.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AddReservationController">
+    <stylesheets>
+        <URL value="@/css/reservation.css" />
+    </stylesheets>
+    <center>
+      <GridPane prefHeight="448.0" prefWidth="338.0" styleClass="body" stylesheets="@../../css/reservation.css" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -15,7 +19,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <GridPane prefHeight="358.0" prefWidth="314.0">
+            <GridPane prefHeight="358.0" prefWidth="314.0" styleClass="body" stylesheets="@../../css/reservation.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />
                   <ColumnConstraints hgrow="SOMETIMES" />
@@ -28,12 +32,12 @@
                   <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="45.0" prefWidth="301.0" text="%reserve_a_table" GridPane.columnSpan="2">
+                  <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="45.0" prefWidth="301.0" text="%reserve_a_table" textFill="#ffeeee" GridPane.columnSpan="2">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
                   <DatePicker fx:id="datePickerId" prefHeight="26.0" prefWidth="168.0" promptText="%choose_a_date" GridPane.rowIndex="1">
@@ -53,17 +57,17 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="minusBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minusBtnAction" prefHeight="26.0" prefWidth="27.0" text="-" GridPane.columnIndex="1">
+                        <Button fx:id="minusBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minusBtnAction" prefHeight="26.0" prefWidth="27.0" styleClass="buttons" stylesheets="@../../css/reservation.css" text="-" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="plusBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="34.0" mnemonicParsing="false" onAction="#plusBtnAction" text="+" GridPane.columnIndex="3">
+                        <Button fx:id="plusBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="34.0" mnemonicParsing="false" onAction="#plusBtnAction" styleClass="buttons" stylesheets="@../../css/reservation.css" text="+" GridPane.columnIndex="3">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Label fx:id="numberOfGuestsLabel" alignment="CENTER" prefHeight="18.0" prefWidth="130.0" text="2 Guests" GridPane.columnIndex="2" />
+                        <Label fx:id="numberOfGuestsLabel" alignment="CENTER" prefHeight="18.0" prefWidth="130.0" text="2 Guests" textFill="#fcf1f1" GridPane.columnIndex="2" />
                      </children>
                      <GridPane.margin>
                         <Insets />

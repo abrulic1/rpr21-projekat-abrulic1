@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderpane" prefHeight="449.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.UserController">
+<BorderPane fx:id="borderpane" prefHeight="615.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.UserController">
     <stylesheets>
         <URL value="@/css/user.css" />
     </stylesheets>
     <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="520.0" prefWidth="901.0" styleClass="borderpane" stylesheets="@../../css/user.css" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" />
         </columnConstraints>
@@ -23,17 +23,65 @@
             <RowConstraints maxHeight="286.8" minHeight="10.0" prefHeight="92.40000000000003" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="imageView" fitHeight="414.0" fitWidth="679.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="3">
+            <ImageView fx:id="imageView" fitHeight="557.0" fitWidth="927.0" pickOnBounds="true" preserveRatio="true" styleClass="imageView" BorderPane.alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
                <image>
                   <Image url="@../../images/slide5.jpg" />
                </image>
                <viewport>
                   <Rectangle2D />
-               </viewport></ImageView>
-            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="709.0" text="%welcome" textAlignment="CENTER" GridPane.rowIndex="1">
+               </viewport>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin></ImageView>
+            <GridPane alignment="CENTER" prefHeight="106.0" prefWidth="555.0" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="viewMenuBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewMenuAction" prefHeight="75.0" prefWidth="220.0" styleClass="buttons" text="%view_our_menu" textAlignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="reserveBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="24.0" mnemonicParsing="false" onAction="#reserveTableAction" prefHeight="75.0" prefWidth="220.0" styleClass="buttons" text="%reserve" textAlignment="CENTER" GridPane.columnIndex="1">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="signoutBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="244.0" layoutY="18.0" mnemonicParsing="false" onAction="#signoutAction" prefHeight="75.0" prefWidth="229.0" styleClass="buttons" text="%sign_out" textAlignment="CENTER" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="934.0" text="%welcome" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
@@ -41,49 +89,16 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <font>
-                  <Font name="Brush Script MT Italic" size="32.0" />
+                  <Font name="Brush Script MT Italic" size="48.0" />
                </font>
                <effect>
                   <ColorAdjust brightness="0.44" contrast="0.59" hue="-1.0" saturation="-0.02" />
                </effect>
             </Label>
-            <GridPane prefHeight="106.0" prefWidth="555.0" GridPane.rowIndex="2">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="viewMenuBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewMenuAction" prefHeight="50.0" prefWidth="180.0" styleClass="buttons" text="%view_our_menu" textAlignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="reserveBtn" contentDisplay="CENTER" layoutX="35.0" layoutY="24.0" mnemonicParsing="false" onAction="#reserveTableAction" prefHeight="50.0" prefWidth="180.0" styleClass="buttons" text="%reserve" textAlignment="CENTER" GridPane.columnIndex="1">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <GridPane.margin>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button fx:id="signoutBtn" contentDisplay="CENTER" layoutX="244.0" layoutY="18.0" mnemonicParsing="false" onAction="#signoutAction" prefHeight="50.0" prefWidth="180.0" styleClass="buttons" text="%sign_out" textAlignment="CENTER" GridPane.columnIndex="2">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <GridPane.margin>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                     </GridPane.margin>
-                  </Button>
-               </children>
-            </GridPane>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
       </GridPane>
    </center>
    <top>

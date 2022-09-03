@@ -1,58 +1,298 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="450.0" prefWidth="539.0" styleClass="body" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.ViewMenuController">
+<GridPane alignment="TOP_CENTER" prefHeight="585.0" prefWidth="1029.0" styleClass="body" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.ViewMenuController">
     <stylesheets>
         <URL value="@/css/viewmenu.css" />
     </stylesheets>
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" />
-    <ColumnConstraints hgrow="SOMETIMES" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.6" minWidth="121.99999237060547" prefWidth="126.39999237060547" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="826.0" minWidth="352.6" prefWidth="378.79999999999995" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.4000000000001" minWidth="0.0" prefWidth="28.000030517578125" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.4000000000001" minWidth="135.60000000000002" prefWidth="496.599969482422" />
       <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="186.4" minHeight="10.0" prefHeight="49.2" vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="122.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="535.0" minHeight="493.0" prefHeight="535.0" vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="58.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="3" GridPane.rowSpan="3" />
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="725.0" text="%view_our_menu" textAlignment="CENTER" textFill="#eae8e8" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <ImageView fitHeight="58.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="3" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="725.0" text="%view_our_menu" textAlignment="CENTER" textFill="#101326" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
-            <Font name="Brush Script MT Italic" size="24.0" />
+            <Font name="Brush Script MT Italic" size="36.0" />
          </font>
       </Label>
-      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox alignment="TOP_CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
-            <Button fx:id="viewAllBtn" mnemonicParsing="false" onMouseClicked="#viewAllAction" prefHeight="26.0" prefWidth="80.0" text="%viewAll">
+            <Pane prefHeight="26.0" prefWidth="126.0" />
+            <Button fx:id="viewAllBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#viewAllAction" prefHeight="54.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../../css/viewmenu.css" text="%viewAll">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin></Button>
-            <Button fx:id="veganBtn" mnemonicParsing="false" onMouseClicked="#viewVeganAction" prefHeight="26.0" prefWidth="80.0" text="%viewVegan">
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="veganBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#viewVeganAction" prefHeight="54.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../../css/viewmenu.css" text="%viewVegan">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin></Button>
-            <Button fx:id="vegetarianBtn" mnemonicParsing="false" onMouseClicked="#viewVegetarianAction" prefHeight="26.0" prefWidth="90.0" text="%viewVegetarian">
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="vegetarianBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#viewVegetarianAction" prefHeight="54.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../../css/viewmenu.css" text="%viewVegetarian">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin></Button>
-            <Button fx:id="signoutBtn" mnemonicParsing="false" onAction="#signoutAction" prefHeight="26.0" prefWidth="90.0" text="%sign_out">
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="addToWishlistBtn" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="20.0" layoutY="171.0" mnemonicParsing="false" onAction="#addToWishlistAction" prefHeight="54.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../../css/viewmenu.css" text="%addToWishList">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="signoutBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signoutAction" prefHeight="54.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../../css/viewmenu.css" text="%sign_out">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </VBox>
-      <TableView fx:id="tableView" GridPane.rowIndex="1">
+      <TableView fx:id="tableView" prefHeight="515.0" prefWidth="428.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="nameTbl" prefWidth="231.20000302791595" text="%name" />
-          <TableColumn fx:id="priceTable" prefWidth="206.39999389648438" text="%priceTable" />
+          <TableColumn fx:id="nameTbl" editable="false" minWidth="-1.0" prefWidth="197.19998168945312" text="%name" />
+          <TableColumn fx:id="priceTable" editable="false" prefWidth="160.4000244140625" text="%priceTable" />
         </columns>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
       </TableView>
+      <HBox alignment="CENTER" styleClass="rightSide" GridPane.columnIndex="3">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="725.0" text="%make_reservation" textAlignment="CENTER" textFill="#101326">
+               <font>
+                  <Font name="Brush Script MT Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox prefHeight="488.0" prefWidth="462.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <children>
+            <GridPane prefHeight="516.0" prefWidth="497.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="236.6" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="35.400000000000006" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="225.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="415.6" minHeight="10.0" prefHeight="415.6" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="34.19999999999999" minHeight="7.800000000000011" prefHeight="16.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="247.40000000000003" minHeight="10.0" prefHeight="75.19999999999999" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="nameField" promptText="%name">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="surnameField" promptText="%surname">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="emailField" promptText="%email">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </TextField>
+                        <HBox prefHeight="68.0" prefWidth="237.0">
+                           <children>
+                              <DatePicker fx:id="datePickerId">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </DatePicker>
+                              <ChoiceBox fx:id="choiceBoxId" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="16.0" prefWidth="237.0">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TextField fx:id="usernameId" promptText="%username">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField fx:id="passwordId" promptText="%password">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TextField>
+                              <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitReservationAction" styleClass="buttons" text="%submit">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="409.0" prefWidth="12.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Separator>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="226.0">
+                           <children>
+                              <Label text="%your_wishlist">
+                                 <font>
+                                    <Font name="Brush Script MT Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="listViewId" prefHeight="275.0" prefWidth="226.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </ListView>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Button fx:id="deleteItemBtn" mnemonicParsing="false" onAction="#deleteFromWishlistAction" prefHeight="26.0" prefWidth="217.0" styleClass="buttons" text="%delete_item_from_wishlist">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                 </padding>
+                              </Button>
+                              <Label text="%total">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="totalNumberLabel" text="0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" minHeight="0.0" minWidth="0.0" prefHeight="86.0" prefWidth="498.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                     <children>
+                        <Pane prefHeight="75.0" prefWidth="81.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="236.0" text="%Aready_have_reservation" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="checkReservationButton" mnemonicParsing="false" onAction="#checkReservationAction" prefHeight="47.0" prefWidth="174.0" styleClass="buttons" text="%checkreservation">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="75.0" prefWidth="95.0" />
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Separator>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <Separator orientation="VERTICAL" prefHeight="583.0" prefWidth="0.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Separator>
    </children>
 </GridPane>

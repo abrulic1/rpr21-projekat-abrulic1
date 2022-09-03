@@ -8,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -25,6 +27,8 @@ public class UserController {
     public Button viewMenuBtn;
     public Button reserveBtn;
     public Button signoutBtn;
+    public BorderPane borderpane;
+    public Label titleLabel;
     ArrayList<Image> images = new ArrayList<>();
     int counter=0;
     ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
@@ -39,6 +43,9 @@ public class UserController {
 
     @FXML
     public void initialize(){
+        imageView.setPreserveRatio(false);
+        imageView.fitWidthProperty().bind(borderpane.widthProperty());
+        imageView.fitHeightProperty().bind(borderpane.heightProperty());
         slideshow();
     }
 
@@ -61,10 +68,10 @@ public class UserController {
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
-
     }
 
     public void reserveTableAction(ActionEvent actionEvent) {
+
     }
 
     public void signoutAction(ActionEvent actionEvent) throws IOException {

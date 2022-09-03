@@ -5,8 +5,6 @@ G
 .idea/libraries/lib.xml,5\6\563a23e064e6fdd2d09bd0c2d99ef456aff71a31
 K
 rpr21-projekat-abrulic1.iml,9\e\9efab5af42f24f2da66223391e34f9253c5fefef
-A
-restaurant.db.sql,0\a\0a110915d82995bfec7bf4289392e728965844a2
 s
 Csrc/Admin panel/ba/unsa/etf/rpr/projekat/AddMenuItemController.java,c\8\c8e05e715211f98e37adff22d436204e65ccfa24
 r
@@ -19,9 +17,9 @@ p
 @src/Other java classes/ba/unsa/etf/rpr/projekat/Reservation.java,9\e\9eed1672ebf7e992b49df9c2917f7d461bec4876
 v
 Fsrc/Admin panel/ba/unsa/etf/rpr/projekat/AddReservationController.java,2\1\21d0714fd46539d40325e69bd00c185238d770d3
-u
-Esrc/Admin panel/ba/unsa/etf/rpr/projekat/AdministratorController.java,7\9\79d7a830e106445d1bd3771e4b9a69a132523a6e
-p
-@src/Other java classes/ba/unsa/etf/rpr/projekat/DatabaseDAO.java,d\a\da9fc13cb30abb52b37fdad17d114c1b724022c6
+w
+Gsrc/Other java classes/ba/unsa/etf/rpr/projekat/RegisterController.java,3\5\3521adb694a7d42bf8cb4d25899523dac80583c4
 i
-9src/Other java classes/ba/unsa/etf/rpr/projekat/Main.java,d\5\d5d05e86148257eceeb14a43722b31283acc5151
+9src/Other java classes/ba/unsa/etf/rpr/projekat/User.java,1\1\1167cf62c5c72eb7ffa02db5c602d2e1fe01f55a
+o
+?src/Admin panel/ba/unsa/etf/rpr/projekat/AddUserController.java,b\e\bed1259387c26b3d000c7426ebf7b793323ddce2

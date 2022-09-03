@@ -1,0 +1,16 @@
+.body{
+    background-color: darkred;
+}
+
+.buttons{
+    -fx-border-radius: 12px;
+    -fx-background-color: white;
+    -fx-text-fill: darkred;
+    -fx-border-radius: 3px;
+    text-decoration: darkred;
+}
+
+.buttons:hover{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}

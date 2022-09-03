@@ -1,7 +1,27 @@
 .body{
-    -fx-background-image: url(/images/slide5.jpg);
+    -fx-background-image: url(/images/slide6.jpg);
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 100% 100%;
 }
+
+
+.buttons{
+    -fx-border-radius: 12px;
+    -fx-background-color: #00091a;
+    -fx-text-fill: white;
+    -fx-border-radius: 3px;
+}
+
+.buttons:hover{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+
+.buttons:pressed{
+    -fx-background-color: #000d1a;
+    -fx-text-fill: white;
+}
+

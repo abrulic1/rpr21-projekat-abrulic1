@@ -8,6 +8,44 @@
     -fx-graphic: url("/images/gb.png");
 }
 
+.body{
+    -fx-background-color: #00001a;
+}
+#usernameLbl, #passwordLbl, #notHaveAccountLbl, #loginLbl, #User, #Administrator{
+    -fx-text-fill: lightgrey;
+}
 
+#signinBtn{
+    -fx-background-color: white;
+}
 
+.language{
+    -fx-border-color: none;
+    -fx-background-color: transparent;
+}
 
+.buttons{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.paneForPassword{
+    -fx-border-color: darkblue;
+    -fx-background-color: white;
+}
+
+.usernameTextField{
+    -fx-border-color: darkblue;
+    -fx-background-color: white;
+}
+
+.passwordField{
+    -fx-border-color: none;
+    -fx-background-color: white;
+}
+
+imageHideShow{
+    -fx-border-image-width: 33;
+    -fx-border-image-height: 38;
+    -fx-image: url(/images/hide.png);
+}

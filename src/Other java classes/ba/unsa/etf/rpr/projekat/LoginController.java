@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -20,7 +22,6 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class LoginController {
     public Button registerBtn;
     public Button signinBtn;
-    public ButtonBar languageBtn;
     public Button gbBtn;
     public Button baBtn;
     public Button deBtn;
@@ -33,8 +34,12 @@ public class LoginController {
     public Label usernameLbl;
     public Label passwordLbl;
     public Label notHaveAccountLbl;
+    public TextField passwordTextField;
+    public ImageView imageview;
 
     DatabaseDAO dao = DatabaseDAO.getInstance();
+    ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
+    private boolean showPassword=false;
 
     public LoginController() throws SQLException {
     }
@@ -43,6 +48,7 @@ public class LoginController {
     @FXML
     public void initialize(){
         User.setSelected(true);
+        passwordField.requestFocus();
     }
 
 
@@ -59,7 +65,6 @@ public class LoginController {
 
 
     public void RoleSignInAction(ActionEvent actionEvent) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         User usr = dao.getUser(usernameField.getText(), passwordField.getText());
         Administrator admin = dao.getAdministrator(usernameField.getText(), passwordField.getText());
 
@@ -99,7 +104,6 @@ public class LoginController {
         }
     }
     public void englishLanguageAction(ActionEvent actionEvent) {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         Locale locale = new Locale("en_US");
         Locale.setDefault(new Locale("en", "US"));
         bundle = ResourceBundle.getBundle("Translation_en_US", locale);
@@ -121,7 +125,6 @@ public class LoginController {
     }
 
     public void bosnianLanguageAction(ActionEvent actionEvent) {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         Locale locale = new Locale("bs_BA");
         Locale.setDefault(new Locale("bs", "BA"));
         bundle = ResourceBundle.getBundle("Translation_bs_BA", locale);
@@ -129,10 +132,28 @@ public class LoginController {
     }
 
     public void germanLanguageAction(ActionEvent actionEvent) {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         Locale locale = new Locale("de_DE");
         Locale.setDefault(new Locale("de", "DE"));
         bundle = ResourceBundle.getBundle("Translation_de_DE", locale);
         setTranslation(bundle);
+    }
+
+    private void hidePassword(){
+        imageview.setImage(new Image("/images/hide.png"));
+        passwordTextField.setVisible(false);
+        passwordField.setVisible(true);
+        passwordField.setText(passwordTextField.getText());
+    }
+    private void showPassword(){
+        imageview.setImage(new Image("/images/view.png"));
+        passwordTextField.setVisible(true);
+        passwordField.setVisible(false);
+        passwordTextField.setText(passwordField.getText());
+    }
+
+    public void imageHideShowClick(MouseEvent mouseEvent) {
+        showPassword=!showPassword;
+        if(showPassword) showPassword();
+        else hidePassword();
     }
 }

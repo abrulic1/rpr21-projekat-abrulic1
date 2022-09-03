@@ -39,6 +39,10 @@ public class UserController {
 
     @FXML
     public void initialize(){
+        slideshow();
+    }
+
+    public void slideshow(){
         Timeline tl = new Timeline(new KeyFrame(Duration.seconds(3), lambda ->{
             imageView.setImage(images.get(counter));
             counter++;
@@ -69,6 +73,7 @@ public class UserController {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"), bundle);
         stage.setTitle(bundle.getString("login"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
         stage.show();
     }
 }

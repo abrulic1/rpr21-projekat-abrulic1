@@ -19,6 +19,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class RegisterController {
     public TextField nameFld;
     public PasswordField passwordFld;
+    public PasswordField submitPasswordField;
     public RadioButton femaleBttn;
     public ToggleGroup pol;
     public RadioButton maleBttn;
@@ -39,18 +40,17 @@ public class RegisterController {
     public Label usernameLbl;
     public Label passwordLbl;
     public Label haveAnAccountLbl;
+    public Label submitPasswordLabel;
+    public Label passwordLengthLabel2;
 
     DatabaseDAO dao = DatabaseDAO.getInstance();
+    ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     public RegisterController() throws SQLException {
     }
 
-
-    @FXML
-    public void initialize() throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
-        femaleBttn.setSelected(true);
-        //nameField validation
+    private boolean nameFieldValidation(){
+        final boolean[] valid = {true};
         nameFld.textProperty().addListener((obs, old, n) -> {
             if (!nameFld.getText().trim().isEmpty()) {
                 nameFld.getStyleClass().removeAll("IncorrectInput");
@@ -58,10 +58,14 @@ public class RegisterController {
             } else{
                 nameFld.getStyleClass().removeAll("CorrectInput");
                 nameFld.getStyleClass().add("IncorrectInput");
+                valid[0] = false;
             }
         });
+        return valid[0];
+    }
 
-        //surnameField validation
+    private boolean surnameFieldValidation(){
+        final boolean[] valid = {true};
         surnameFld.textProperty().addListener((obs, old, n) -> {
             if (!surnameFld.getText().trim().isEmpty()) {
                 surnameFld.getStyleClass().removeAll("IncorrectInput");
@@ -69,10 +73,14 @@ public class RegisterController {
             } else{
                 surnameFld.getStyleClass().removeAll("CorrectInput");
                 surnameFld.getStyleClass().add("IncorrectInput");
+                valid[0] =false;
             }
         });
+        return valid[0];
+    }
 
-        //emailField validation
+    private boolean emailFieldValidation(){
+        final boolean[] valid = {true};
         emailFld.textProperty().addListener((obs, old, n) -> {
             if (!emailFld.getText().trim().isEmpty()) {
                 emailFld.getStyleClass().removeAll("IncorrectInput");
@@ -80,31 +88,60 @@ public class RegisterController {
             } else{
                 emailFld.getStyleClass().removeAll("CorrectInput");
                 emailFld.getStyleClass().add("IncorrectInput");
+                valid[0] =false;
             }
         });
+        return valid[0];
+    }
 
-        //passwordField validation
+    private boolean passwordFieldValidation(){
+        usernameLabelErrorText.setText("");
+        final boolean[] valid = {true};
         passwordFld.textProperty().addListener((obs, old, n) -> {
-            if (!passwordFld.getText().trim().isEmpty()) {
-                passwordFld.getStyleClass().removeAll("IncorrectInput");
-                passwordFld.getStyleClass().add("CorrectInput");
-            } else{
-                passwordFld.getStyleClass().removeAll("CorrectInput");
-                passwordFld.getStyleClass().add("IncorrectInput");
-            }
-
-            if (passwordFld.getText().length() < 8) {
-                passwordFld.getStyleClass().removeAll("CorrectInput");
-                passwordFld.getStyleClass().add("IncorrectInput");
-                passwordLengthLabel.setText(bundle.getString("poor_password"));
-            } else {
+            if (!passwordFld.getText().trim().isEmpty() && passwordFld.getText().length() >= 8) {
                 passwordFld.getStyleClass().removeAll("IncorrectInput");
                 passwordFld.getStyleClass().add("CorrectInput");
                 passwordLengthLabel.setText("");
+            } else if(passwordFld.getText().length() < 8 && !passwordFld.getText().isEmpty()){
+                passwordFld.getStyleClass().removeAll("CorrectInput");
+                passwordFld.getStyleClass().add("IncorrectInput");
+                passwordLengthLabel.setText(bundle.getString("poor_password"));
+                valid[0] =false;
+            } else if (passwordFld.getText().trim().isEmpty()) {
+                passwordFld.getStyleClass().removeAll("CorrectInput");
+                passwordFld.getStyleClass().add("IncorrectInput");
+                passwordLengthLabel.setText("");
+                valid[0] =false;
             }
         });
+        return valid[0];
+    }
 
-        //usernameField validation
+    private boolean submitPasswordValidation(){
+        boolean[] valid ={true};
+        submitPasswordField.textProperty().addListener((obs, old, n) -> {
+            if (!submitPasswordField.getText().trim().isEmpty() && submitPasswordField.getText().equals(passwordFld.getText())) {
+                submitPasswordField.getStyleClass().removeAll("IncorrectInput");
+                submitPasswordField.getStyleClass().add("CorrectInput");
+                passwordLengthLabel2.setText("");
+                valid[0]=true;
+            } else if(!submitPasswordField.getText().equals(passwordFld.getText())){
+                submitPasswordField.getStyleClass().removeAll("CorrectInput");
+                submitPasswordField.getStyleClass().add("IncorrectInput");
+                passwordLengthLabel2.setText(bundle.getString("incorrect_password"));
+                valid[0] =false;
+            } else if(submitPasswordField.getText().isEmpty()){
+                submitPasswordField.getStyleClass().removeAll("CorrectInput");
+                submitPasswordField.getStyleClass().add("IncorrectInput");
+                passwordLengthLabel2.setText("");
+                valid[0] =false;
+            }
+        });
+        return valid[0];
+    }
+
+    private boolean usernameFieldValidation(){
+        boolean[] valid ={true};
         usernameFld.textProperty().addListener((obs, old, n) -> {
             ArrayList<User> users = dao.returnAllUsers(usernameFld.getText());
             ArrayList<Administrator> admins = dao.returnAllAdmins(usernameFld.getText());
@@ -116,47 +153,45 @@ public class RegisterController {
                 usernameFld.getStyleClass().removeAll("CorrectInput");
                 usernameFld.getStyleClass().add("IncorrectInput");
                 usernameLabelErrorText.setText("");
+                valid[0]=false;
             }
             else{
                 usernameFld.getStyleClass().removeAll("CorrectInput");
                 usernameFld.getStyleClass().add("IncorrectInput");
                 usernameLabelErrorText.setText(bundle.getString("taken_username"));
+                valid[0]=false;
             }
         });
+        return valid[0];
+    }
+
+    @FXML
+    public void initialize() throws IOException {
+        femaleBttn.setSelected(true);
+        nameFieldValidation();
+        surnameFieldValidation();
+        emailFieldValidation();
+        passwordFieldValidation();
+        usernameFieldValidation();
+        submitPasswordValidation();
     }
 
 
     public void registerNowAction(ActionEvent actionEvent) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         ArrayList<User> users = dao.returnAllUsers(usernameFld.getText());
         ArrayList<Administrator> admins = dao.returnAllAdmins(usernameFld.getText());
-        if(nameFld.getText().trim().isEmpty() || surnameFld.getText().trim().isEmpty() || usernameFld.getText().trim().isEmpty() ||
-           emailFld.getText().trim().isEmpty() || passwordFld.getText().trim().isEmpty() || users.size()!=0 || admins.size()!=0 || passwordFld.getText().length() < 8){
+        if(!nameFieldValidation() || !surnameFieldValidation() || !emailFieldValidation() || !passwordFieldValidation()
+             || !submitPasswordValidation() || !passwordFld.getText().equals(submitPasswordField.getText()) || !users.isEmpty() || !admins.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
             alert.setHeaderText(bundle.getString("not_correctly_fulfilled_infos"));
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
-            if(nameFld.getText().trim().isEmpty()) {
-                nameFld.getStyleClass().removeAll("CorrectInput");
-                nameFld.getStyleClass().add("IncorrectInput");
-            }
-            if(surnameFld.getText().trim().isEmpty()) {
-                surnameFld.getStyleClass().removeAll("CorrectInput");
-                surnameFld.getStyleClass().add("IncorrectInput");
-            }
-            if(passwordFld.getText().trim().isEmpty()) {
-                passwordFld.getStyleClass().removeAll("CorrectInput");
-                passwordFld.getStyleClass().add("IncorrectInput");
-            }
-            if(emailFld.getText().trim().isEmpty()) {
-                emailFld.getStyleClass().removeAll("CorrectInput");
-                emailFld.getStyleClass().add("IncorrectInput");
-            }
-            if(usernameFld.getText().trim().isEmpty()) {
-                usernameFld.getStyleClass().removeAll("CorrectInput");
-                usernameFld.getStyleClass().add("IncorrectInput");
-            }
+            nameFieldValidation();
+            surnameFieldValidation();
+            emailFieldValidation();
+            passwordFieldValidation();
+            usernameFieldValidation();
         }
         else{
             if(maleBttn.isSelected())
@@ -173,30 +208,29 @@ public class RegisterController {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"), bundle);
             stage.setTitle(bundle.getString("login"));
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(false);
             stage.show();
         }
     }
 
     public void signInLabelClicked(MouseEvent mouseEvent) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         Stage stage = (Stage) registerNowBtn.getScene().getWindow();
         stage.close();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"), bundle);
         stage.setTitle(bundle.getString("login"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
         stage.show();
     }
 
 
     public void englishLanguageAction(ActionEvent actionEvent) {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         nameFld.requestFocus();
         usernameLabelErrorText.setText("");
         Locale locale = new Locale("en_US");
         Locale.setDefault(new Locale("en", "US"));
         bundle = ResourceBundle.getBundle("Translation_en_US", locale);
         setTranslation(bundle);
-
     }
 
     private void setTranslation(ResourceBundle bundle) {
@@ -204,6 +238,7 @@ public class RegisterController {
         nameLbl.setText(bundle.getString("name"));
         surnameLbl.setText(bundle.getString("surname"));
         emailLbl.setText(bundle.getString("email"));
+        submitPasswordLabel.setText(bundle.getString("submit_password"));
         usernameLbl.setText(bundle.getString("username"));
         passwordLbl.setText(bundle.getString("password"));
         femaleBttn.setText(bundle.getString("female"));
@@ -211,6 +246,7 @@ public class RegisterController {
         registerNowBtn.setText(bundle.getString("register_now"));
         haveAnAccountLbl.setText(bundle.getString("Already_have_an_account?"));
         signInLabel.setText(bundle.getString("sign_in"));
+
         if(usernameFld.getText().trim().isEmpty()) usernameLabelErrorText.setText("");
         else usernameLabelErrorText.setText(bundle.getString("taken_username"));
         if(passwordFld.getText().isEmpty()) passwordLengthLabel.setText("");
@@ -220,7 +256,6 @@ public class RegisterController {
     }
 
     public void bosnianLanguageAction(ActionEvent actionEvent) {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         nameFld.requestFocus();
         Locale locale = new Locale("bs_BA");
         Locale.setDefault(new Locale("bs", "BA"));
@@ -229,7 +264,6 @@ public class RegisterController {
     }
 
     public void germanLanguageAction(ActionEvent actionEvent) {
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         nameFld.requestFocus();
         Locale locale = new Locale("de_DE");
         Locale.setDefault(new Locale("de", "DE"));

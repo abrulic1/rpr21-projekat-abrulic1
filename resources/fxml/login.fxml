@@ -3,68 +3,42 @@
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="361.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.LoginController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="423.0" prefWidth="373.0" styleClass="body" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.LoginController">
    <stylesheets>
            <URL value="@/css/login.css" />
    </stylesheets>
     <center>
       <GridPane prefHeight="289.0" prefWidth="334.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="166.4" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.6" minWidth="102.0" prefWidth="165.6" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.5999755859375" minWidth="150.79998779296875" prefWidth="167.5999755859375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.2" minWidth="105.4" prefWidth="207.6000244140625" />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints vgrow="SOMETIMES" />
           <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="43.400000000000006" minHeight="10.0" prefHeight="43.400000000000006" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.19999999999999" minHeight="41.19999999999999" prefHeight="41.19999999999999" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="81.20000000000002" minHeight="66.20000000000002" prefHeight="81.20000000000002" vgrow="SOMETIMES" />
             <RowConstraints vgrow="SOMETIMES" />
             <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="loginLbl" alignment="CENTER" prefHeight="32.0" prefWidth="330.0" text="%login" GridPane.columnSpan="3">
+            <Label fx:id="loginLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="374.0" text="%login" textAlignment="CENTER" GridPane.columnSpan="3" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
-            <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefWidth="122.0" text="%username" GridPane.rowIndex="1">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" prefWidth="122.0" text="%password" GridPane.rowIndex="2">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin></TextField>
-            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin></PasswordField>
-            <Pane GridPane.rowIndex="3">
+            <Pane GridPane.columnSpan="2" GridPane.rowIndex="4">
                <children>
-                  <RadioButton fx:id="User" layoutX="56.0" mnemonicParsing="false" text="%user">
+                  <RadioButton fx:id="User" layoutX="74.0" layoutY="9.0" mnemonicParsing="false" text="%user">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -75,7 +49,7 @@
                         <ToggleGroup fx:id="choiceRole" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="Administrator" layoutX="155.0" mnemonicParsing="false" text="%administrator" toggleGroup="$choiceRole">
+                  <RadioButton fx:id="Administrator" layoutX="182.0" layoutY="6.0" mnemonicParsing="false" text="%administrator" toggleGroup="$choiceRole">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -84,10 +58,13 @@
                      </font>
                   </RadioButton>
                </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
             </Pane>
-            <Pane GridPane.columnSpan="3" GridPane.rowIndex="6">
+            <Pane prefHeight="103.0" prefWidth="365.0" GridPane.columnSpan="3" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="notHaveAccountLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="321.0" text="%Do_not_have_account?">
+                  <Label fx:id="notHaveAccountLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="376.0" text="%Do_not_have_account?">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -95,7 +72,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="registerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="37.0" mnemonicParsing="false" onAction="#registrationAction" prefHeight="40.0" prefWidth="102.0" text="%register">
+                  <Button fx:id="registerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="48.0" mnemonicParsing="false" onAction="#registrationAction" prefHeight="40.0" prefWidth="102.0" text="%register">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -111,7 +88,7 @@
                   <Insets bottom="5.0" />
                </GridPane.margin>
             </Pane>
-            <Button fx:id="signinBtn" defaultButton="true" mnemonicParsing="false" onAction="#RoleSignInAction" prefHeight="38.0" prefWidth="316.0" text="%sign_in" GridPane.columnSpan="3" GridPane.rowIndex="4">
+            <Button fx:id="signinBtn" defaultButton="true" mnemonicParsing="false" onAction="#RoleSignInAction" prefHeight="38.0" prefWidth="390.0" text="%sign_in" GridPane.columnSpan="2" GridPane.rowIndex="5">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -119,24 +96,95 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
-            <Separator prefHeight="3.0" prefWidth="177.0" GridPane.columnSpan="3" GridPane.rowIndex="5">
+            <Separator prefHeight="3.0" prefWidth="177.0" GridPane.columnSpan="3" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </Separator>
+            <HBox alignment="CENTER_LEFT" maxHeight="50.0" maxWidth="378.0" prefHeight="50.0" prefWidth="378.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="200.0" text="%username">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" prefHeight="38.0" prefWidth="264.0" styleClass="usernameTextField">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Pane prefHeight="55.0" prefWidth="41.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="84.0" maxHeight="50.0" maxWidth="426.0" prefHeight="48.0" prefWidth="426.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="150.0" text="%password">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="211.0" styleClass="paneForPassword" stylesheets="@../css/login.css">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <TextField fx:id="passwordTextField" layoutX="2.0" layoutY="3.0" prefHeight="35.0" prefWidth="173.0" styleClass="passwordField">
+                           <padding>
+                              <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+                           </padding>
+                        </TextField>
+                        <ImageView fx:id="imageview" fitHeight="20.0" fitWidth="20.0" layoutX="188.0" layoutY="10.0" onMouseClicked="#imageHideShowClick" pickOnBounds="true" preserveRatio="true" styleClass="imageHideShow">
+                           <image>
+                              <Image url="@../images/hide.png" />
+                           </image>
+                        </ImageView>
+                        <PasswordField fx:id="passwordField" layoutX="3.0" layoutY="3.0" prefHeight="35.0" prefWidth="172.0" styleClass="passwordField">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </PasswordField>
+                     </children>
+                  </Pane>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+               <children>
+                  <Button fx:id="gbBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#englishLanguageAction" prefHeight="26.0" prefWidth="34.0" styleClass="buttons" stylesheets="@../css/login.css" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="baBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#bosnianLanguageAction" prefHeight="26.0" prefWidth="34.0" styleClass="buttons" stylesheets="@../css/login.css" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="deBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#germanLanguageAction" prefHeight="26.0" prefWidth="34.0" styleClass="buttons" stylesheets="@../css/login.css" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </center>
-   <top>
-      <ButtonBar fx:id="languageBtn" buttonMinWidth="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="323.0" BorderPane.alignment="CENTER">
-        <buttons>
-          <Button fx:id="gbBtn" maxWidth="60.0" mnemonicParsing="false" onAction="#englishLanguageAction" prefHeight="26.0" prefWidth="42.0" />
-            <Button fx:id="baBtn" mnemonicParsing="false" onAction="#bosnianLanguageAction" />
-            <Button fx:id="deBtn" mnemonicParsing="false" onAction="#germanLanguageAction" />
-        </buttons>
-         <BorderPane.margin>
-            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-         </BorderPane.margin>
-      </ButtonBar>
-   </top>
 </BorderPane>

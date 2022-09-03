@@ -6,8 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -20,15 +21,15 @@ import java.util.ResourceBundle;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class ViewMenuController {
-    public ImageView imageView;
     public Button viewAllBtn;
-    public ListView listView;
     public Button veganBtn;
     public Button vegetarianBtn;
     public Button signoutBtn;
+    public TableView tableView;
+    public TableColumn nameTbl;
+    public TableColumn priceTable;
     ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
     DatabaseDAO dao = DatabaseDAO.getInstance();
-
 
     public ViewMenuController() throws SQLException {
 
@@ -36,7 +37,9 @@ public class ViewMenuController {
 
     @FXML
     public void initialize(){
-        listView.setItems(dao.returnAllMenuItems());
+        nameTbl.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceTable.setCellValueFactory(new PropertyValueFactory<>("price"));
+        tableView.setItems(dao.returnAllMenuItems());
     }
 
 
@@ -50,14 +53,14 @@ public class ViewMenuController {
     }
 
     public void viewAllAction(MouseEvent mouseEvent) {
-        listView.setItems(dao.returnAllMenuItems());
+        tableView.setItems(dao.returnAllMenuItems());
     }
 
     public void viewVeganAction(MouseEvent mouseEvent) {
-        listView.setItems(dao.returnAllVeganMenuItems());
+        tableView.setItems(dao.returnAllVeganMenuItems());
     }
 
     public void viewVegetarianAction(MouseEvent mouseEvent) {
-        listView.setItems(dao.returnAllVegetarianMenuItems());
+        tableView.setItems(dao.returnAllVegetarianMenuItems());
     }
 }

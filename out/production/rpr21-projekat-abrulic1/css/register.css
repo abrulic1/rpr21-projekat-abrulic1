@@ -24,3 +24,13 @@
 #languageBtn{
     -fx-background-color: lightgrey;
 }
+
+
+.borderPane{
+    -fx-background-color: #00001a;
+}
+
+.buttons{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}

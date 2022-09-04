@@ -19,10 +19,10 @@ public class AddReservationController {
     public Button minusBtn;
     public Button plusBtn;
     public Label numberOfGuestsLabel;
-    public Label descReservationLabel;
     public Button cancelBtn;
     public Button okBtn;
     public ChoiceBox<String> timeChoiceBox;
+    public ChoiceBox<User> choiceUserBox;
     DatabaseDAO dao = DatabaseDAO.getInstance();
     ArrayList<String> time = new ArrayList<>();
     ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
@@ -46,6 +46,7 @@ public class AddReservationController {
     public void initialize(){
         timeChoiceBox.setItems(FXCollections.observableList(time));
         timeChoiceBox.getSelectionModel().selectFirst();
+        choiceUserBox.setItems(dao.returnAllUsers());
         datePickerId.setDayCellFactory(lambda->
                 new DateCell(){
                     @Override
@@ -97,21 +98,34 @@ public class AddReservationController {
     public void okBtnAction(ActionEvent actionEvent) {
        // String[] time = timeChoiceBox.getSelectionModel().getSelectedItem().split(" ");
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
-        ArrayList<Reservation> r = null;
+      //  ArrayList<Reservation> r = null;
 
-            r = dao.returnAllReservations(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem());
-        if(!r.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            r = dao.returnAllReservations(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem());
+//        if(!r.isEmpty()){
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle(bundle.getString("error"));
+//            alert.setHeaderText(bundle.getString("not_correctly_fulfilled_infos"));
+//            alert.setContentText(bundle.getString("click_ok_try_again"));
+//            alert.showAndWait();
+//        }
+   //     else{
+
+
+        var reservations = dao.returnAllUsersReservation(choiceUserBox.getSelectionModel().getSelectedItem().getId());
+
+           if(!reservations.isEmpty()){
+               Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
-            alert.setHeaderText(bundle.getString("not_correctly_fulfilled_infos"));
+            alert.setHeaderText("USER ALREADY HAVE ONE (MAX) RESERVATION");
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
-        }
-        else{
-            String[] string = numberOfGuestsLabel.getText().split(" ");
-                dao.addNewReservation(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem(), Integer.parseInt(string[0]));
-            Stage s = (Stage) cancelBtn.getScene().getWindow();
-            s.close();
-        }
+           }
+           else {
+               String[] string = numberOfGuestsLabel.getText().split(" ");
+               int usersId = choiceUserBox.getSelectionModel().getSelectedItem().getId();
+               dao.addNewReservation(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem(), Integer.parseInt(string[0]), choiceUserBox.getSelectionModel().getSelectedItem().getId(), choiceUserBox.getSelectionModel().getSelectedItem().getName(), choiceUserBox.getSelectionModel().getSelectedItem().getSurname());
+               Stage s = (Stage) cancelBtn.getScene().getWindow();
+               s.close();
+           }
     }
 }

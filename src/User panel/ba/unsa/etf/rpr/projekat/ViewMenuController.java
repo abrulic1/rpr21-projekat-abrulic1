@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -42,17 +46,53 @@ public class ViewMenuController {
     DatabaseDAO dao = DatabaseDAO.getInstance();
     double total = 0;
     private String usrName;
+    private ArrayList<String> time = new ArrayList<>();
 
-//    public ViewMenuController(String username) throws SQLException {
-//        usrName=username;
-//    }
+    public ViewMenuController(String username) throws SQLException {
+        System.out.println(usrName);
+        usrName=username;
+    }
 
 
     public ViewMenuController() throws SQLException {
+        time.add("11:00 AM");
+        time.add("12:00 AM");
+        time.add("01:00 PM");
+        time.add("02:00 PM");
+        time.add("03:00 PM");
+        time.add("04:00 PM");
+        time.add("05:00 PM");
+        time.add("06:00 PM");
+        time.add("07:00 PM");
+        time.add("08:00 PM");
+        time.add("09:00 PM");
+        time.add("10:00 PM");
     }
 
-    @FXML
+
+@FXML
     public void initialize() {
+        listViewId.setItems(dao.getAllWishlistItems(usrName));
+        choiceBoxId.setItems(FXCollections.observableList(time));
+        choiceBoxId.getSelectionModel().selectFirst();
+        total=dao.returnTotalFromWishlist(usrName);
+        totalNumberLabel.setText(String.valueOf(total));
+        datePickerId.setDayCellFactory(lambda->
+                new DateCell(){
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item.isBefore(LocalDate.now())) { //Disable all dates after required date
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        }
+                        if(item.isAfter(LocalDate.now().plusDays(30))){
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        }
+                    }
+                });
+        datePickerId.setValue(LocalDate.now());
         nameTbl.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceTable.setCellValueFactory(new PropertyValueFactory<>("price"));
         tableView.setItems(dao.returnAllMenuItems());
@@ -74,19 +114,21 @@ public class ViewMenuController {
             listViewId.refresh();
             total = total + tableView.getSelectionModel().getSelectedItem().getPrice();
             totalNumberLabel.setText(String.valueOf(total));
+            dao.addItemOnWishlist(usrName, tableView.getSelectionModel().getSelectedItem().getName(), tableView.getSelectionModel().getSelectedItem().getPrice());
            // dao.addOnWishList(usrName, tableView.getSelectionModel().getSelectedItem().getName(), tableView.getSelectionModel().getSelectedItem().getPrice());
         } else if (tableView.getSelectionModel().getSelectedItem() != null && listViewId.getItems().contains(tableView.getSelectionModel().getSelectedItem().getName())) {
-//           PopUpController kontroler = new PopUpController();
-//            FXMLLoader  loader = new FXMLLoader(getClass().getResource("/fxml/user panel/nesto.fxml"));
-//           Stage stage = new Stage();
-//           loader.setController(kontroler);
-//           Parent root = loader.load();
-//           stage.setScene(new Scene(root));
+           AlreadyAddedItemPopupController kontroler = new AlreadyAddedItemPopupController(tableView.getSelectionModel().getSelectedItem().getName());
+            FXMLLoader  loader = new FXMLLoader(getClass().getResource("/fxml/user panel/alreadyAddedItem.fxml"), bundle);
+           Stage stage = new Stage();
+           loader.setController(kontroler);
+           Parent root = loader.load();
+           stage.setScene(new Scene(root));
 //            PauseTransition s = new PauseTransition(Duration.seconds(3));
 //            stage.showAndWait();
 //            s.setOnFinished(f->{
 //                stage.hide();
 //            });
+            stage.show();
         }
     }
 
@@ -103,6 +145,12 @@ public class ViewMenuController {
     }
 
     public void submitReservationAction(ActionEvent actionEvent) {
+        var users = dao.returnAllUsers(usernameId.getText());
+        if(users.isEmpty()){
+            //nema takvih podataka, provjerite username i password
+        }else if(!users.isEmpty()){
+            ///provjeriti da li se podaci podudaraju
+        }
     }
 
     public void checkReservationAction(ActionEvent actionEvent) {
@@ -111,9 +159,12 @@ public class ViewMenuController {
 
     public void deleteFromWishlistAction(ActionEvent actionEvent) {
         if (listViewId.getSelectionModel().getSelectedItem() != null) {
+            dao.deleteFromWishlist(usrName, listViewId.getSelectionModel().getSelectedItem());
+            total=total-dao.getPriceOfMenuitem(listViewId.getSelectionModel().getSelectedItem());
+            totalNumberLabel.setText(String.valueOf(total));
             listViewId.getItems().remove(listViewId.getSelectionModel().getSelectedItem().toString());
             listViewId.refresh();
-            //total = total -
+
             //da uzme cijenenu iz baze i oduzme
         }
     }

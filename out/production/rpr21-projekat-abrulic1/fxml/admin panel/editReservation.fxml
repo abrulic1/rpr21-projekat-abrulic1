@@ -1,65 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane prefHeight="223.0" prefWidth="306.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" />
-    <ColumnConstraints hgrow="SOMETIMES" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-  </rowConstraints>
-  <children>
-    <DatePicker fx:id="datePicker" prefHeight="26.0" prefWidth="168.0" promptText="%choose_a_date">
-      <GridPane.margin>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </GridPane.margin>
-    </DatePicker>
-    <GridPane GridPane.columnSpan="2" GridPane.rowIndex="1">
+<BorderPane prefHeight="396.0" prefWidth="329.0" styleClass="body" stylesheets="@../../css/reservation.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@/css/reservation.css" />
+  </stylesheets>
+  <center>
+    <GridPane prefHeight="448.0" prefWidth="338.0" styleClass="body" stylesheets="@../../css/reservation.css" BorderPane.alignment="CENTER">
       <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
       </columnConstraints>
       <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
       </rowConstraints>
       <children>
-        <Button fx:id="btnMinus" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minusBtnAction" prefHeight="26.0" prefWidth="27.0" text="-" GridPane.columnIndex="1">
-          <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-          </GridPane.margin>
-        </Button>
-        <Button fx:id="btnPlus" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="34.0" mnemonicParsing="false" onAction="#plusBtnAction" text="+" GridPane.columnIndex="3">
-          <GridPane.margin>
-            <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-          </GridPane.margin>
-        </Button>
-        <Label fx:id="numberOfGuestsLbl" alignment="CENTER" prefHeight="18.0" prefWidth="130.0" text="2 Guests" GridPane.columnIndex="2" />
+        <GridPane prefHeight="411.0" prefWidth="378.0" styleClass="body" stylesheets="@../../css/reservation.css">
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="141.0" prefWidth="196.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.39999999999998" minWidth="164.39999999999998" prefWidth="164.39999999999998" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="76.6" minHeight="38.39999618530274" prefHeight="76.6" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="143.8" minHeight="87.4" prefHeight="123.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="122.40000381469727" minHeight="17.200000000000017" prefHeight="40.400000000000006" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="122.40000381469727" minHeight="0.8000000000000114" prefHeight="28.19999999999999" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="143.0" minHeight="23.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+          </rowConstraints>
+          <children>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="45.0" prefWidth="301.0" text="%reserve_a_table" GridPane.columnSpan="2">
+              <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+              </GridPane.margin>
+              <font>
+                <Font name="System Bold Italic" size="18.0" />
+              </font>
+            </Label>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+              <buttons>
+                <Button fx:id="cancelBtn" cancelButton="true" mnemonicParsing="false" onAction="#cancelBtnAction" text="Cancel" />
+                <Button fx:id="okBtn" defaultButton="true" mnemonicParsing="false" onAction="#okBtnAction" text="OK" />
+              </buttons>
+              <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+              </GridPane.margin>
+            </ButtonBar>
+            <VBox alignment="CENTER" prefHeight="85.0" prefWidth="361.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+              <children>
+                <Label text="Select user from database: ">
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding></Label>
+                <ChoiceBox fx:id="choiceUserBox" prefHeight="35.0" prefWidth="308.0">
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding></ChoiceBox>
+              </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+              <children>
+                <DatePicker fx:id="datePickerId" prefHeight="26.0" prefWidth="168.0" promptText="%choose_a_date">
+                  <VBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+                </DatePicker>
+                <ChoiceBox fx:id="timeChoiceBox" prefHeight="35.0" prefWidth="99.0">
+                  <VBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+                </ChoiceBox>
+              </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <children>
+                <Button fx:id="minusBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minusBtnAction" prefHeight="26.0" prefWidth="29.0" styleClass="buttons" stylesheets="@../../css/reservation.css" text="-" />
+                <Label fx:id="numberOfGuestsLabel" alignment="CENTER" prefHeight="18.0" prefWidth="63.0" text="2 Guests" />
+                <Button fx:id="plusBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#plusBtnAction" prefHeight="26.0" prefWidth="29.0" styleClass="buttons" stylesheets="@../../css/reservation.css" text="+" />
+              </children>
+              <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+              </GridPane.margin>
+            </HBox>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="357.0" text="Reservation: date time" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+              <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+              </GridPane.margin>
+            </Separator>
+          </children>
+        </GridPane>
       </children>
-      <GridPane.margin>
-        <Insets />
-      </GridPane.margin>
     </GridPane>
-    <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
-      <buttons>
-        <Button fx:id="CancelBtn" cancelButton="true" mnemonicParsing="false" onAction="#cancelBtnAction" text="Cancel" />
-        <Button fx:id="okBtn" defaultButton="true" mnemonicParsing="false" onAction="#okBtnAction" text="OK" />
-      </buttons>
-      <GridPane.margin>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </GridPane.margin>
-    </ButtonBar>
-    <ChoiceBox fx:id="choiceTime" prefWidth="150.0" GridPane.columnIndex="1">
-      <GridPane.margin>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </GridPane.margin></ChoiceBox>
-  </children>
-</GridPane>
+  </center>
+</BorderPane>

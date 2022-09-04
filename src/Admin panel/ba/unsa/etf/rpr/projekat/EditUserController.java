@@ -59,6 +59,8 @@ public class EditUserController {
                 usernameLabelErrorText.setText("");
             else if (usernameFld.getText().trim().isEmpty() && users.size()==0 && admins.size()==0)
                 usernameLabelErrorText.setText("");
+            else if(usernameFld.getText().equals(dao.returnAllUsersById(idEditUser).getUsername()) && users.size()!=0)
+                usernameLabelErrorText.setText("");
             else
                 usernameLabelErrorText.setText(bundle.getString("taken_username"));
         });
@@ -76,7 +78,7 @@ public class EditUserController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
         ArrayList<User> users = dao.returnAllUsers(usernameFld.getText());
         ArrayList<Administrator> admins = dao.returnAllAdmins(usernameFld.getText());
-        if(!users.isEmpty() || !admins.isEmpty() || passwordFld.getText().length() < 8){
+        if(((!users.isEmpty() || !admins.isEmpty()) && !usernameFld.getText().equals(dao.returnAllUsersById(idEditUser).getUsername())) || passwordFld.getText().length() < 8){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
             alert.setHeaderText(bundle.getString("not_correctly_fulfilled_infos"));

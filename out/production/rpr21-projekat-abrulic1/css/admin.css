@@ -1,11 +1,23 @@
-#vbox{
+
+.table-view{
+    -fx-text-fill: black;
+}
+
+.tab-pane .table-view{
     -fx-background-color: #00001a;
 }
 
-#buttonbar{
-    -fx-background-color: #00001a
+
+.tab-pane .tab{
+    -fx-background-color: #00001a;
+    -fx-text-fill: white;
 }
 
-#tabpane{
-    -fx-background-color: #00001a
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-text-fill: #00001a;
+}
+
+.table-view .column-header-background:pressed{
+    -fx-background-color: white;
 }

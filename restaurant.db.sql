@@ -26,41 +26,32 @@ CREATE TABLE IF NOT EXISTS "menuitem" (
 	"vegetarian"	TEXT,
 	PRIMARY KEY("id")
 );
+CREATE TABLE IF NOT EXISTS "wishlist" (
+	"id"	INTEGER,
+	"userId"	INTEGER,
+	"menuitem"	TEXT,
+	"price"	NUMERIC,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("userId") REFERENCES "users"("id")
+);
 CREATE TABLE IF NOT EXISTS "reservations" (
 	"id"	INTEGER,
 	"date"	TEXT,
-	"time"	TEXT,
+	"time"	NUMERIC,
 	"guests"	INTEGER,
-	PRIMARY KEY("id")
+	"userId"	INTEGER,
+	"guest_name"	TEXT,
+	"guest_surname"	TEXT,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("userId") REFERENCES "users"("id")
 );
 INSERT INTO "admins" VALUES (1,'Almina','Brulic','alminabr@hotmail.com','admin','admin');
-INSERT INTO "users" VALUES (1,'Neko','Nekiccccccc','neko@gmail.com','nnekic','nnekic','Male');
-INSERT INTO "users" VALUES (2,'asas`','ded','ddwd','adfdf','jdsddsdsdsd','Male');
-INSERT INTO "users" VALUES (3,'almina','almina','almina','admia','adminaadd','Female');
-INSERT INTO "users" VALUES (4,'','','','','aaaaaaaaa','Female');
-INSERT INTO "users" VALUES (5,'a','a','a','aa','aaaaaaaaaaa','Female');
-INSERT INTO "users" VALUES (6,'fdf','fdf','fdf','dfd','qqqqqqqqqq','Female');
-INSERT INTO "users" VALUES (7,'sasas','assasa','sasa','sas','assssssss','Female');
-INSERT INTO "users" VALUES (8,'dsdsdd','sddsddsdsds','dsdd','ddsd','ffffffffffff','Female');
-INSERT INTO "users" VALUES (9,'a','aa','a','aaa','aaaaaaaaa','Female');
-INSERT INTO "users" VALUES (10,'asasas','assas','sass','asas','aaaaaaasasa','Female');
-INSERT INTO "users" VALUES (11,'s','s','s','sss','qqqqqqqq','Female');
-INSERT INTO "menuitem" VALUES (1,'spagetthi',10.0,'no','yes');
-INSERT INTO "menuitem" VALUES (2,'Bodd',15.0,'no','yes');
-INSERT INTO "menuitem" VALUES (3,'kokok',5.0,'no','no');
-INSERT INTO "menuitem" VALUES (4,'z9',5.0,'no','no');
-INSERT INTO "reservations" VALUES (1,'2022-09-23','03:00 PM',2);
-INSERT INTO "reservations" VALUES (3,'2022-09-01','11:00 AM',2);
-INSERT INTO "reservations" VALUES (6,'2022-09-02','11:00 AM',2);
-INSERT INTO "reservations" VALUES (9,'2022-09-30','12:00 AM',2);
-INSERT INTO "reservations" VALUES (10,'2022-09-30','11:00 AM',2);
-INSERT INTO "reservations" VALUES (11,'2022-09-03','11:00 AM',2);
-INSERT INTO "reservations" VALUES (12,'2022-09-04','11:00 AM',2);
-INSERT INTO "reservations" VALUES (13,'2022-09-05','11:00 AM',2);
-INSERT INTO "reservations" VALUES (14,'2022-09-06','11:00 AM',2);
-INSERT INTO "reservations" VALUES (15,'2022-09-08','11:00 AM',2);
-INSERT INTO "reservations" VALUES (16,'2022-09-17','11:00 AM',2);
-INSERT INTO "reservations" VALUES (17,'2022-09-22','11:00 AM',2);
-INSERT INTO "reservations" VALUES (18,'2022-09-24','11:00 AM',2);
-INSERT INTO "reservations" VALUES (19,'2022-09-21','11:00 AM',2);
+INSERT INTO "users" VALUES (1,'Neko','Nekic','nnekic@gmail.com','nnekic','nnekic1234','Male');
+INSERT INTO "users" VALUES (2,'Svako','Svakic','ssvakic@gmail.com','ssvakic','ssvakic123','Female');
+INSERT INTO "users" VALUES (3,'Niko','Nikic','nikic@hotmail.com','nikic','nikic123','Male');
+INSERT INTO "menuitem" VALUES (1,'Lentil bolognese',20.0,'yes','no');
+INSERT INTO "menuitem" VALUES (2,'Southwestern Pasta Salad',15.95,'yes','yes');
+INSERT INTO "menuitem" VALUES (3,'Garlic Pasta',10.0,'no','no');
+INSERT INTO "menuitem" VALUES (4,'Vegan Pasta',25.0,'yes','yes');
+INSERT INTO "menuitem" VALUES (5,'Spaghetti',7.5,'no','yes');
 COMMIT;

@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.SwipeEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -48,8 +47,12 @@ public class LoginController {
     @FXML
     public void initialize(){
         User.setSelected(true);
-        usernameField.requestFocus();
+        passwordTextField.setEditable(false);
+        passwordTextField.setVisible(false);
+        Platform.runLater(()->usernameField.requestFocus());
+        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
     }
+
 
 
     public void registrationAction(ActionEvent actionEvent) throws IOException {
@@ -85,29 +88,28 @@ public class LoginController {
         }
 
          if(User.isSelected() && usr!=null){
-//            Stage stage = (Stage)registerBtn.getScene().getWindow();
-//            stage.close();
-//            ViewMenuController kontroler = new ViewMenuController(usernameField.getText());
-//             stage = new Stage();
-//             FXMLLoader loader = new FXMLLoader();
-//             loader.setController(kontroler);
-//             loader = new FXMLLoader(getClass().getResource("/fxml/user panel/viewMenu.fxml"), bundle);
-//             Parent root = loader.load();
-//             stage.setTitle(bundle.getString("user"));
-//             stage.getIcons().add(new Image("/images/add-user.png"));
-//             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//             stage.setResizable(false);
-//             stage.showAndWait();
-//            stage.show();
-
-             Stage stage = (Stage)registerBtn.getScene().getWindow();
-             stage.close();
-             Parent root = FXMLLoader.load(getClass().getResource("/fxml/user panel/user-main.fxml"), bundle);
-             stage.getIcons().add(new Image("/images/admin.png"));
-             stage.setTitle(bundle.getString("administrator"));
+            Stage stage = (Stage)registerBtn.getScene().getWindow();
+            stage.close();
+            ViewMenuController kontroler = new ViewMenuController(usernameField.getText());
+             stage = new Stage();
+             FXMLLoader loader = new FXMLLoader();
+             loader.setController(kontroler);
+             loader = new FXMLLoader(getClass().getResource("/fxml/user panel/viewMenu.fxml"), bundle);
+             Parent root = loader.load();
+             stage.setTitle(bundle.getString("user"));
+             stage.getIcons().add(new Image("/images/add-user.png"));
              stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-             stage.setResizable(true);
-             stage.show();
+             stage.setResizable(false);
+             stage.showAndWait();
+
+//             Stage stage = (Stage)registerBtn.getScene().getWindow();
+//             stage.close();
+//             Parent root = FXMLLoader.load(getClass().getResource("/fxml/user panel/user-main.fxml"), bundle);
+//             stage.getIcons().add(new Image("/images/admin.png"));
+//             stage.setTitle(bundle.getString("administrator"));
+//             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+//             stage.setResizable(true);
+//             stage.show();
 
         }
         else if(Administrator.isSelected() && admin!=null){
@@ -159,13 +161,18 @@ public class LoginController {
     private void hidePassword(){
         imageview.setImage(new Image("/images/hide.png"));
         passwordTextField.setVisible(false);
+        passwordTextField.setEditable(false);
         passwordField.setVisible(true);
+        passwordField.setEditable(true);
         passwordField.setText(passwordTextField.getText());
     }
     private void showPassword(){
         imageview.setImage(new Image("/images/view.png"));
+
+        passwordTextField.setEditable(true);
         passwordTextField.setVisible(true);
         passwordField.setVisible(false);
+        passwordField.setEditable(false);
         passwordTextField.setText(passwordField.getText());
     }
 

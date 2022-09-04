@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -58,6 +59,11 @@ public class AdministratorController {
     public Label totalNumberId;
     public Label totalReservations;
     public Label totalMenus;
+    public TableColumn<Integer, Reservation> guestIdTbl;
+    public TableColumn<String, Reservation> guestNameTbl;
+    public TableColumn<String, Reservation> guestSurnameTbl;
+
+
     ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
 
     DatabaseDAO dao = DatabaseDAO.getInstance();
@@ -79,6 +85,9 @@ public class AdministratorController {
         dateReservationTblColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeReservationTblColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         guestsReservationTable.setCellValueFactory(new PropertyValueFactory<>("numberOfGuests"));
+        guestIdTbl.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        guestNameTbl.setCellValueFactory(new PropertyValueFactory<>("guest_name"));
+      guestSurnameTbl.setCellValueFactory(new PropertyValueFactory<>("guest_surname"));
         reservationsTableView.setItems(dao.returnAllReservations());
         idMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -226,9 +235,10 @@ public class AdministratorController {
             stage.setTitle(bundle.getString("edit_reservation")); //////////
             stage.getIcons().add(new Image("/images/addreservation.png"));
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            kontroler.datePicker.setValue(reservation.getDate());
-            kontroler.choiceTime.getSelectionModel().select(reservation.getTime());
-            kontroler.numberOfGuestsLbl.setText(reservation.getNumberOfGuests() + " Guests");
+            kontroler.datePickerId.setValue(reservation.getDate());
+            kontroler.timeChoiceBox.getSelectionModel().select(reservation.getTime());
+            kontroler.numberOfGuestsLabel.setText(reservation.getNumberOfGuests() + " Guests");
+            kontroler.choiceUserBox.setValue(dao.returnAllUsersById(reservationsTableView.getSelectionModel().getSelectedItem().getUserId()));
             stage.setResizable(false);
             stage.showAndWait();
             reservationsTableView.getItems().clear();
@@ -239,6 +249,11 @@ public class AdministratorController {
     }
 
     public void printReservationAction(ActionEvent actionEvent) {
+        try {
+            new PrintReport().showReport(dao.getConnection());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public void addMenuAction(ActionEvent actionEvent) throws IOException {
@@ -309,5 +324,12 @@ public class AdministratorController {
     }
 
     public void printMenuAction(ActionEvent actionEvent) {
+        try {
+            new PrintReport().showReportForMenu(dao.getConnection());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
     }
+
+
 }

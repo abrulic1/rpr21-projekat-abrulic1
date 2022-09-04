@@ -140,11 +140,6 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                        <PasswordField fx:id="passwordField" layoutX="3.0" layoutY="3.0" prefHeight="35.0" prefWidth="172.0" styleClass="passwordField">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </PasswordField>
                         <TextField fx:id="passwordTextField" layoutX="2.0" layoutY="3.0" prefHeight="35.0" prefWidth="173.0" styleClass="passwordField">
                            <padding>
                               <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
@@ -155,6 +150,11 @@
                               <Image url="@../images/hide.png" />
                            </image>
                         </ImageView>
+                        <PasswordField fx:id="passwordField" layoutX="3.0" layoutY="3.0" prefHeight="35.0" prefWidth="172.0" styleClass="passwordField">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </PasswordField>
                      </children>
                   </Pane>
                </children>

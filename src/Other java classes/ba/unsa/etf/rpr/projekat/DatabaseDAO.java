@@ -6,30 +6,31 @@ import javafx.collections.ObservableList;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class DatabaseDAO {
     private Connection conn;
+
     private static DatabaseDAO instance = null;
     /*ADMIN PANEL PREP. STATEMENTS*/
     private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
             allUsersUsernameStatement, allAdminsUsernameStatement, deleteUserFromBase, updateUserStatement,
             returnAllReservationsStatement, deleteReservationFromBaseStm, returnReservationsByDateStm, findMaxIdReservationStm,
            insertReservationStm, editReservationStatement, returnAllMenuItemsStatement, returnMenuItemsByNameStm,
-            findMaxMenuItemIdStm, insertMenuItemStm, deleteMenuItemStatement, editMenuItemStm;
+            findMaxMenuItemIdStm, insertMenuItemStm, deleteMenuItemStatement, editMenuItemStm, returnUsersByIdStatement,
+    returnUsersReservationsStatement;
 
     /*USER PANEL PREP. STATEMENS*/
-    private PreparedStatement returnAllVeganMealsStm, returnAllVegetarianMealsStm, addOnWishlistStatement, findMaxIdFromWishlistStatement;
+    private PreparedStatement returnAllVeganMealsStm, returnAllVegetarianMealsStm, addOnWishlistStatement, findMaxIdFromWishlistStatement,
+    returnPriceOfMenuitemStatement, returnAllWishlistItemsStatement, deleteFromWishlistStm;
 
 
+    public Connection getConnection(){
+        return conn;
+    }
     //Constructor
     private DatabaseDAO() throws SQLException {
         String url = "jdbc:sqlite:" + System.getProperty("user.home") + "/restaurant.db";
@@ -59,17 +60,24 @@ public class DatabaseDAO {
             deleteReservationFromBaseStm=conn.prepareStatement("DELETE FROM reservations WHERE id=?");
             returnReservationsByDateStm=conn.prepareStatement("SELECT * FROM reservations WHERE date=? AND time=?");
             findMaxIdReservationStm=conn.prepareStatement("SELECT MAX(id)+1 FROM reservations");
-            insertReservationStm=conn.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?)");
-            editReservationStatement=conn.prepareStatement("UPDATE reservations SET date=?, time=?, guests=? WHERE id=?");
+            insertReservationStm=conn.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?,?,?,?)");
+            editReservationStatement=conn.prepareStatement("UPDATE reservations SET date=?, time=?, guests=?, userId=?, guest_name=?, guest_surname=? WHERE id=?");
             findMaxMenuItemIdStm=conn.prepareStatement("SELECT MAX(id)+1 FROM menuitem");
             returnMenuItemsByNameStm = conn.prepareStatement("SELECT * FROM menuitem WHERE name=?");
             insertMenuItemStm = conn.prepareStatement("INSERT INTO menuitem VALUES(?,?,?,?,?)");
             deleteMenuItemStatement =conn.prepareStatement("DELETE FROM menuitem WHERE id=?");
             editMenuItemStm=conn.prepareStatement("UPDATE menuitem SET name=?, price=?, vegan=?, vegetarian=? WHERE id=?");
+            returnUsersByIdStatement=conn.prepareStatement("SELECT * FROM users WHERE id =?");
+            returnUsersReservationsStatement=conn.prepareStatement("SELECT * FROM reservations WHERE userId=?");
 
             /**********USER PANEL**************/
             returnAllVeganMealsStm=conn.prepareStatement("SELECT * FROM menuitem WHERE vegan=?");
             returnAllVegetarianMealsStm=conn.prepareStatement("SELECT * FROM menuitem WHERE vegetarian=?");
+            returnPriceOfMenuitemStatement=conn.prepareStatement("SELECT price FROM menuitem WHERE name=?");
+            returnAllWishlistItemsStatement=conn.prepareStatement("SELECT * FROM wishlist WHERE userId=?");
+            findMaxIdFromWishlistStatement=conn.prepareStatement("SELECT MAX(id)+1 FROM wishlist");
+            addOnWishlistStatement=conn.prepareStatement("INSERT INTO wishlist VALUES(?,?,?,?)");
+            deleteFromWishlistStm = conn.prepareStatement("DELETE FROM wishlist WHERE userId=? and menuitem=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -251,7 +259,7 @@ public class DatabaseDAO {
                   String date = rs.getString(2);
                   DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate ld = LocalDate.parse(date, df);
-                    reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4)));
+                    reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -293,7 +301,7 @@ public class DatabaseDAO {
                 String date2 = rs.getString(2);
                 DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate ld = LocalDate.parse(date2, df);
-                reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4)));
+                reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -301,7 +309,7 @@ public class DatabaseDAO {
   return  reservations;
     }
 
-    public void addNewReservation(LocalDate date, String time, int guests) {
+    public void addNewReservation(LocalDate date, String time, int guests, int userId, String name, String surname) {
         int id = 1;
         try {
             ResultSet rs = findMaxIdReservationStm.executeQuery();
@@ -316,6 +324,9 @@ public class DatabaseDAO {
             insertReservationStm.setString(2, datum);
             insertReservationStm.setString(3, time);
             insertReservationStm.setInt(4, guests);
+            insertReservationStm.setInt(5, userId);
+            insertReservationStm.setString(6, name);
+            insertReservationStm.setString(7, surname);
             insertReservationStm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -324,12 +335,15 @@ public class DatabaseDAO {
 
     }
 
-    public void editReservation(LocalDate date, String time, int guests, int id) {
+    public void editReservation(LocalDate date, String time, int idReservation, int guests, int userId, String name, String surname) {
         try {
             editReservationStatement.setString(1, String.valueOf(date));
             editReservationStatement.setString(2, time);
             editReservationStatement.setInt(3, guests);
-            editReservationStatement.setInt(4, id);
+            editReservationStatement.setInt(4, userId);
+            editReservationStatement.setString(5, name);
+            editReservationStatement.setString(6, surname);
+            editReservationStatement.setInt(7, idReservation);
             editReservationStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -432,6 +446,142 @@ public class DatabaseDAO {
             e.printStackTrace();
         }
         return FXCollections.observableList(menuis);
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public User returnAllUsersById(int id) {
+        User usr = new User();
+        try {
+            returnUsersByIdStatement.setInt(1, id);
+            ResultSet rs = returnUsersByIdStatement.executeQuery();
+            while(rs.next())
+                usr = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  usr;
+    }
+
+    public List<Reservation> returnAllUsersReservation(int id) {
+       List<Reservation> reservations = new ArrayList<>();
+        try {
+            returnUsersReservationsStatement.setInt(1,id);
+            ResultSet rs = returnUsersReservationsStatement.executeQuery();
+            while(rs.next()){
+                String date2 = rs.getString(2);
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate ld = LocalDate.parse(date2, df);
+                reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservations;
+    }
+
+    public double getPriceOfMenuitem(String name) {
+        double price=0;
+        try {
+            returnPriceOfMenuitemStatement.setString(1, name);
+            ResultSet rs = returnPriceOfMenuitemStatement.executeQuery();
+            while(rs.next())
+                price=rs.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return price;
+    }
+
+    public ObservableList<String> getAllWishlistItems(String usrName) {
+        int userId=1;
+        try {
+            allUsersUsernameStatement.setString(1, usrName);
+            ResultSet rs = allUsersUsernameStatement.executeQuery();
+            while(rs.next())
+                userId = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        List<String> wl = new ArrayList<>();
+        try {
+            returnAllWishlistItemsStatement.setInt(1, userId);
+            ResultSet rs = returnAllWishlistItemsStatement.executeQuery();
+            while(rs.next())
+                wl.add(rs.getString(3));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return FXCollections.observableList(wl);
+    }
+
+    public void addItemOnWishlist(String usrName, String name, double price) {
+        int id = 1, userId=1;
+        try {
+            ResultSet rs = findMaxIdFromWishlistStatement.executeQuery();
+            while(rs.next())
+                id=rs.getInt(1);
+            rs = allUsersUsernameStatement.executeQuery();
+            while(rs.next())
+                userId = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            addOnWishlistStatement.setInt(1, id);
+            addOnWishlistStatement.setInt(2, userId);
+            addOnWishlistStatement.setString(3, name);
+            addOnWishlistStatement.setDouble(4, price);
+            addOnWishlistStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteFromWishlist(String usrName, String name) {
+        int  userId=1;
+        try {
+            ResultSet rs = allUsersUsernameStatement.executeQuery();
+            while(rs.next())
+                userId = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            deleteFromWishlistStm.setInt(1, userId);
+            deleteFromWishlistStm.setString(2, name);
+            deleteFromWishlistStm.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public double returnTotalFromWishlist(String usrName) {
+        int  userId=1;
+        double total = 0;
+        try {
+            ResultSet rs = allUsersUsernameStatement.executeQuery();
+            while(rs.next())
+                userId = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            returnAllWishlistItemsStatement.setInt(1, userId);
+            ResultSet rs = returnAllWishlistItemsStatement.executeQuery();
+
+            while(rs.next())
+                total=total+rs.getDouble(4);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total;
     }
 }
 

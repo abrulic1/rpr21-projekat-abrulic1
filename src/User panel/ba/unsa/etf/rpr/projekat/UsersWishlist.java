@@ -1,18 +1,25 @@
 package ba.unsa.etf.rpr.projekat;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 
 public class UsersWishlist {
     private int id;
     private int userId;
-    private TreeSet<String> meals;
-    private double total;
+    private String menuitem;
+    private double price;
 
     public UsersWishlist() {
     }
 
-
+    public UsersWishlist(int id, int userId, String menuitem, double price) {
+        this.id = id;
+        this.userId = userId;
+        this.menuitem = menuitem;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
@@ -30,26 +37,19 @@ public class UsersWishlist {
         this.userId = userId;
     }
 
-    public UsersWishlist(int id, int userId, TreeSet<String> meals, double total) {
-        this.id = id;
-        this.userId = userId;
-        this.meals = meals;
-        this.total = total;
+    public String getMenuitem() {
+        return menuitem;
     }
 
-    public TreeSet<String> getMeals() {
-        return meals;
+    public void setMenuitem(String menuitem) {
+        this.menuitem = menuitem;
     }
 
-    public void setMeals(TreeSet<String> meals) {
-        this.meals = meals;
+    public double getPrice() {
+        return price;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

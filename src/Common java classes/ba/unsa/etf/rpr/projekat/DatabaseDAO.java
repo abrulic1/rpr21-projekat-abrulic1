@@ -374,8 +374,10 @@ public class DatabaseDAO {
         return menuis;
     }
 
-    public void addNewMenuItem(String name, double price, boolean vegan, boolean vegetarian) {
+    public MenuItem addNewMenuItem(String name, double price, boolean vegan, boolean vegetarian) {
+        MenuItem mi = new MenuItem();
         int id = 1;
+        String veg="no", veget="no";
         try {
             ResultSet rs = findMaxMenuItemIdStm.executeQuery();
             if (rs.next()) id = rs.getInt(1);
@@ -386,16 +388,28 @@ public class DatabaseDAO {
             insertMenuItemStm.setInt(1, id);
             insertMenuItemStm.setString(2, name);
             insertMenuItemStm.setDouble(3, price);
-            if (vegan)
+            if (vegan) {
                 insertMenuItemStm.setString(4, "yes");
-            else insertMenuItemStm.setString(4, "no");
-            if (vegetarian)
+                veg="yes";
+            }
+            else {
+                insertMenuItemStm.setString(4, "no");
+                veg="no";
+            }
+            if (vegetarian) {
                 insertMenuItemStm.setString(5, "yes");
-            else insertMenuItemStm.setString(5, "no");
+                veget="yes";
+            }
+            else {
+                insertMenuItemStm.setString(5, "no");
+                veget="no";
+            }
             insertMenuItemStm.execute();
+            mi=new MenuItem(id, name, price, veg, veget);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return mi;
     }
 
     public void deleteMenuItem(int id) {
@@ -426,7 +440,7 @@ public class DatabaseDAO {
 
 
     /*********************************************************************** USER PANEL METHODS****************************************************************************/
-    public ObservableList returnAllVeganMenuItems() {
+    public ObservableList<MenuItem> returnAllVeganMenuItems() {
         List<MenuItem> menuis = new ArrayList<>();
         try {
             returnAllVeganMealsStm.setString(1, "yes");

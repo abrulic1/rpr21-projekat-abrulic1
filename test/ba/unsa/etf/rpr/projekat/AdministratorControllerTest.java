@@ -71,6 +71,7 @@ class AdministratorControllerTest {
 
     @Test
     void addUserBtnAction(FxRobot robot) {
+        robot.clickOn("#tabUsers");
         robot.clickOn("#addUserBtn");
 
         robot.lookup("#nameFld").tryQuery().isPresent();
@@ -102,6 +103,7 @@ class AdministratorControllerTest {
 
     @Test
     void deleteUserAction(FxRobot robot) {
+        robot.clickOn("#tabUsers");
         robot.clickOn("Ana");
         robot.clickOn("#deleteUserBtn");
 
@@ -120,13 +122,17 @@ class AdministratorControllerTest {
 
     @Test
     void editUserAction(FxRobot robot) {
+        robot.clickOn("#tabUsers");
         robot.clickOn("Ana");
         robot.clickOn("#editUserBtn");
-
+        robot.lookup("#usernameFld").tryQuery().isPresent();
         robot.clickOn("#usernameFld");
         robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
         robot.write("noviusername");
-
+        robot.clickOn("#passwordFld");
+        robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
+        robot.write("novipassword");
+        robot.clickOn("#okBtn");
         boolean edited=false;
         if(dao.returnAllUsers("ana").isEmpty())
             edited=true;
@@ -156,7 +162,7 @@ class AdministratorControllerTest {
 
         robot.clickOn("#okBtn");
 
-        assertEquals(3, dao.returnAllReservations().size());
+        assertEquals(1, dao.returnAllReservations().size());
     }
 
     @Test
@@ -193,7 +199,7 @@ class AdministratorControllerTest {
         DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
         Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
         robot.clickOn(okButton);
-        assertEquals(5, dao.returnAllMenuItems().size());
+        assertEquals(7, dao.returnAllMenuItems().size());
     }
 
     @Test
@@ -202,8 +208,8 @@ class AdministratorControllerTest {
         robot.clickOn("cevapi");
         robot.clickOn("#editMenuBtn");
 
-        robot.lookup("#nameMenuItem").tryQuery().isPresent();
-        robot.clickOn("#nameMenuItem");
+        robot.lookup("#nameField").tryQuery().isPresent();
+        robot.clickOn("#nameField");
         robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
         robot.write("NewCevapcici");
         DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);

@@ -19,18 +19,19 @@ public class DatabaseDAO {
     private PreparedStatement ps, findUserStatement, findAdminStatement, findMaxIdStatement, addNewUserStatement,
             allUsersUsernameStatement, allAdminsUsernameStatement, deleteUserFromBase, updateUserStatement,
             returnAllReservationsStatement, deleteReservationFromBaseStm, returnReservationsByDateStm, findMaxIdReservationStm,
-           insertReservationStm, editReservationStatement, returnAllMenuItemsStatement, returnMenuItemsByNameStm,
+            insertReservationStm, editReservationStatement, returnAllMenuItemsStatement, returnMenuItemsByNameStm,
             findMaxMenuItemIdStm, insertMenuItemStm, deleteMenuItemStatement, editMenuItemStm, returnUsersByIdStatement,
-    returnUsersReservationsStatement;
+            returnUsersReservationsStatement, usersIdStatement;
 
     /*USER PANEL PREP. STATEMENS*/
     private PreparedStatement returnAllVeganMealsStm, returnAllVegetarianMealsStm, addOnWishlistStatement, findMaxIdFromWishlistStatement,
-    returnPriceOfMenuitemStatement, returnAllWishlistItemsStatement, deleteFromWishlistStm;
+            returnPriceOfMenuitemStatement, returnAllWishlistItemsStatement, deleteFromWishlistStm, returnReservationStm, deleteReservationStm;
 
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         return conn;
     }
+
     //Constructor
     private DatabaseDAO() throws SQLException {
         String url = "jdbc:sqlite:" + System.getProperty("user.home") + "/restaurant.db";
@@ -57,27 +58,30 @@ public class DatabaseDAO {
             updateUserStatement = conn.prepareStatement("UPDATE users SET name=?, surname=?, username=?, email=?, password=?, gender=? WHERE id=?");
             returnAllReservationsStatement = conn.prepareStatement("SELECT * FROM reservations");
             returnAllMenuItemsStatement = conn.prepareStatement("SELECT * FROM menuitem");
-            deleteReservationFromBaseStm=conn.prepareStatement("DELETE FROM reservations WHERE id=?");
-            returnReservationsByDateStm=conn.prepareStatement("SELECT * FROM reservations WHERE date=? AND time=?");
-            findMaxIdReservationStm=conn.prepareStatement("SELECT MAX(id)+1 FROM reservations");
-            insertReservationStm=conn.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?,?,?,?)");
-            editReservationStatement=conn.prepareStatement("UPDATE reservations SET date=?, time=?, guests=?, userId=?, guest_name=?, guest_surname=? WHERE id=?");
-            findMaxMenuItemIdStm=conn.prepareStatement("SELECT MAX(id)+1 FROM menuitem");
+            deleteReservationFromBaseStm = conn.prepareStatement("DELETE FROM reservations WHERE id=?");
+            returnReservationsByDateStm = conn.prepareStatement("SELECT * FROM reservations WHERE date=? AND time=?");
+            findMaxIdReservationStm = conn.prepareStatement("SELECT MAX(id)+1 FROM reservations");
+            insertReservationStm = conn.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?,?,?,?)");
+            editReservationStatement = conn.prepareStatement("UPDATE reservations SET date=?, time=?, guests=?, userId=?, guest_name=?, guest_surname=? WHERE id=?");
+            findMaxMenuItemIdStm = conn.prepareStatement("SELECT MAX(id)+1 FROM menuitem");
             returnMenuItemsByNameStm = conn.prepareStatement("SELECT * FROM menuitem WHERE name=?");
             insertMenuItemStm = conn.prepareStatement("INSERT INTO menuitem VALUES(?,?,?,?,?)");
-            deleteMenuItemStatement =conn.prepareStatement("DELETE FROM menuitem WHERE id=?");
-            editMenuItemStm=conn.prepareStatement("UPDATE menuitem SET name=?, price=?, vegan=?, vegetarian=? WHERE id=?");
-            returnUsersByIdStatement=conn.prepareStatement("SELECT * FROM users WHERE id =?");
-            returnUsersReservationsStatement=conn.prepareStatement("SELECT * FROM reservations WHERE userId=?");
+            deleteMenuItemStatement = conn.prepareStatement("DELETE FROM menuitem WHERE id=?");
+            editMenuItemStm = conn.prepareStatement("UPDATE menuitem SET name=?, price=?, vegan=?, vegetarian=? WHERE id=?");
+            returnUsersByIdStatement = conn.prepareStatement("SELECT * FROM users WHERE id =?");
+            returnUsersReservationsStatement = conn.prepareStatement("SELECT * FROM reservations WHERE userId=?");
+            usersIdStatement = conn.prepareStatement("SELECT id FROM users WHERE username=?");
 
             /**********USER PANEL**************/
-            returnAllVeganMealsStm=conn.prepareStatement("SELECT * FROM menuitem WHERE vegan=?");
-            returnAllVegetarianMealsStm=conn.prepareStatement("SELECT * FROM menuitem WHERE vegetarian=?");
-            returnPriceOfMenuitemStatement=conn.prepareStatement("SELECT price FROM menuitem WHERE name=?");
-            returnAllWishlistItemsStatement=conn.prepareStatement("SELECT * FROM wishlist WHERE userId=?");
-            findMaxIdFromWishlistStatement=conn.prepareStatement("SELECT MAX(id)+1 FROM wishlist");
-            addOnWishlistStatement=conn.prepareStatement("INSERT INTO wishlist VALUES(?,?,?,?)");
+            returnAllVeganMealsStm = conn.prepareStatement("SELECT * FROM menuitem WHERE vegan=?");
+            returnAllVegetarianMealsStm = conn.prepareStatement("SELECT * FROM menuitem WHERE vegetarian=?");
+            returnPriceOfMenuitemStatement = conn.prepareStatement("SELECT price FROM menuitem WHERE name=?");
+            returnAllWishlistItemsStatement = conn.prepareStatement("SELECT * FROM wishlist WHERE userId=?");
+            findMaxIdFromWishlistStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM wishlist");
+            addOnWishlistStatement = conn.prepareStatement("INSERT INTO wishlist VALUES(?,?,?,?)");
             deleteFromWishlistStm = conn.prepareStatement("DELETE FROM wishlist WHERE userId=? and menuitem=?");
+            returnReservationStm=conn.prepareStatement("SELECT * FROM reservations WHERE userId=?");
+            deleteReservationStm=conn.prepareStatement("DELETE FROM reservations WHERE userId=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -200,8 +204,8 @@ public class DatabaseDAO {
             addNewUserStatement.setString(4, email);
             addNewUserStatement.setString(5, username);
             addNewUserStatement.setString(6, password);
-            if(selectedToggle.equals("Muško") || selectedToggle.equals("Male") || selectedToggle.equals("Männlich"))
-                 addNewUserStatement.setString(7, "Male");
+            if (selectedToggle.equals("Muško") || selectedToggle.equals("Male") || selectedToggle.equals("Männlich"))
+                addNewUserStatement.setString(7, "Male");
             else addNewUserStatement.setString(7, "Female");
             addNewUserStatement.execute();
         } catch (SQLException e) {
@@ -256,10 +260,10 @@ public class DatabaseDAO {
         try {
             ResultSet rs = returnAllReservationsStatement.executeQuery();
             while (rs.next()) {
-                  String date = rs.getString(2);
-                  DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String date = rs.getString(2);
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate ld = LocalDate.parse(date, df);
-                    reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
+                reservations.add(new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -269,11 +273,11 @@ public class DatabaseDAO {
 
 
     public ObservableList<MenuItem> returnAllMenuItems() {
-        ArrayList<MenuItem> menuItems=new ArrayList<>();
-        try{
+        ArrayList<MenuItem> menuItems = new ArrayList<>();
+        try {
             ResultSet rs = returnAllMenuItemsStatement.executeQuery();
             while (rs.next())
-            menuItems.add(new MenuItem(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
+                menuItems.add(new MenuItem(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -297,7 +301,7 @@ public class DatabaseDAO {
             returnReservationsByDateStm.setString(1, date.toString());
             returnReservationsByDateStm.setString(2, time);
             ResultSet rs = returnReservationsByDateStm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 String date2 = rs.getString(2);
                 DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate ld = LocalDate.parse(date2, df);
@@ -306,7 +310,7 @@ public class DatabaseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-  return  reservations;
+        return reservations;
     }
 
     public void addNewReservation(LocalDate date, String time, int guests, int userId, String name, String surname) {
@@ -362,7 +366,7 @@ public class DatabaseDAO {
         try {
             returnMenuItemsByNameStm.setString(1, name);
             ResultSet rs = returnMenuItemsByNameStm.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 menuis.add(new MenuItem(id, rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -370,7 +374,7 @@ public class DatabaseDAO {
         return menuis;
     }
 
-    public void addNewMenuItem(String name, double price, boolean vegan, boolean vegetarian){
+    public void addNewMenuItem(String name, double price, boolean vegan, boolean vegetarian) {
         int id = 1;
         try {
             ResultSet rs = findMaxMenuItemIdStm.executeQuery();
@@ -379,13 +383,13 @@ public class DatabaseDAO {
             e.printStackTrace();
         }
         try {
-            insertMenuItemStm.setInt(1,id);
+            insertMenuItemStm.setInt(1, id);
             insertMenuItemStm.setString(2, name);
             insertMenuItemStm.setDouble(3, price);
-            if(vegan)
-            insertMenuItemStm.setString(4, "yes");
+            if (vegan)
+                insertMenuItemStm.setString(4, "yes");
             else insertMenuItemStm.setString(4, "no");
-            if(vegetarian)
+            if (vegetarian)
                 insertMenuItemStm.setString(5, "yes");
             else insertMenuItemStm.setString(5, "no");
             insertMenuItemStm.execute();
@@ -408,9 +412,9 @@ public class DatabaseDAO {
         try {
             editMenuItemStm.setString(1, name);
             editMenuItemStm.setDouble(2, Double.parseDouble(price));
-            if(vegan) editMenuItemStm.setString(3, "yes");
+            if (vegan) editMenuItemStm.setString(3, "yes");
             else editMenuItemStm.setString(3, "no");
-            if(vegetarian) editMenuItemStm.setString(4, "yes");
+            if (vegetarian) editMenuItemStm.setString(4, "yes");
             else editMenuItemStm.setString(4, "no");
             editMenuItemStm.setInt(5, id);
             editMenuItemStm.executeUpdate();
@@ -427,12 +431,12 @@ public class DatabaseDAO {
         try {
             returnAllVeganMealsStm.setString(1, "yes");
             ResultSet rs = returnAllVeganMealsStm.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 menuis.add(new MenuItem(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    return FXCollections.observableList(menuis);
+        return FXCollections.observableList(menuis);
     }
 
     public ObservableList returnAllVegetarianMenuItems() {
@@ -440,7 +444,7 @@ public class DatabaseDAO {
         try {
             returnAllVegetarianMealsStm.setString(1, "yes");
             ResultSet rs = returnAllVegetarianMealsStm.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 menuis.add(new MenuItem(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5)));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -455,20 +459,20 @@ public class DatabaseDAO {
         try {
             returnUsersByIdStatement.setInt(1, id);
             ResultSet rs = returnUsersByIdStatement.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 usr = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  usr;
+        return usr;
     }
 
-    public List<Reservation> returnAllUsersReservation(int id) {
-       List<Reservation> reservations = new ArrayList<>();
+    public ArrayList<Reservation> returnAllUsersReservation(int id) {
+        ArrayList<Reservation> reservations = new ArrayList<>();
         try {
-            returnUsersReservationsStatement.setInt(1,id);
+            returnUsersReservationsStatement.setInt(1, id);
             ResultSet rs = returnUsersReservationsStatement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String date2 = rs.getString(2);
                 DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate ld = LocalDate.parse(date2, df);
@@ -481,12 +485,12 @@ public class DatabaseDAO {
     }
 
     public double getPriceOfMenuitem(String name) {
-        double price=0;
+        double price = 0;
         try {
             returnPriceOfMenuitemStatement.setString(1, name);
             ResultSet rs = returnPriceOfMenuitemStatement.executeQuery();
-            while(rs.next())
-                price=rs.getDouble(1);
+            while (rs.next())
+                price = rs.getDouble(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -494,11 +498,11 @@ public class DatabaseDAO {
     }
 
     public ObservableList<String> getAllWishlistItems(String usrName) {
-        int userId=1;
+        int userId = 1;
         try {
             allUsersUsernameStatement.setString(1, usrName);
             ResultSet rs = allUsersUsernameStatement.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 userId = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -509,7 +513,7 @@ public class DatabaseDAO {
         try {
             returnAllWishlistItemsStatement.setInt(1, userId);
             ResultSet rs = returnAllWishlistItemsStatement.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 wl.add(rs.getString(3));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -518,13 +522,14 @@ public class DatabaseDAO {
     }
 
     public void addItemOnWishlist(String usrName, String name, double price) {
-        int id = 1, userId=1;
+        int id = 1, userId = 1;
         try {
             ResultSet rs = findMaxIdFromWishlistStatement.executeQuery();
-            while(rs.next())
-                id=rs.getInt(1);
+            while (rs.next())
+                id = rs.getInt(1);
+            allUsersUsernameStatement.setString(1, usrName);
             rs = allUsersUsernameStatement.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 userId = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -542,10 +547,11 @@ public class DatabaseDAO {
     }
 
     public void deleteFromWishlist(String usrName, String name) {
-        int  userId=1;
+        int userId = 1;
         try {
+            allUsersUsernameStatement.setString(1, usrName);
             ResultSet rs = allUsersUsernameStatement.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 userId = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -563,11 +569,12 @@ public class DatabaseDAO {
     }
 
     public double returnTotalFromWishlist(String usrName) {
-        int  userId=1;
+        int userId = 1;
         double total = 0;
         try {
+            allUsersUsernameStatement.setString(1, usrName);
             ResultSet rs = allUsersUsernameStatement.executeQuery();
-            while(rs.next())
+            while (rs.next())
                 userId = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -576,12 +583,78 @@ public class DatabaseDAO {
             returnAllWishlistItemsStatement.setInt(1, userId);
             ResultSet rs = returnAllWishlistItemsStatement.executeQuery();
 
-            while(rs.next())
-                total=total+rs.getDouble(4);
+            while (rs.next())
+                total = total + rs.getDouble(4);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return total;
+    }
+
+    public int getUsersId(String usrName) {
+        int id = 0;
+        try {
+            usersIdStatement.setString(1, usrName);
+            ResultSet rs = usersIdStatement.executeQuery();
+            while (rs.next()) id = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public ArrayList<Reservation> returnAllUsersReservation(String usrName) {
+        ArrayList<Reservation> rez = new ArrayList<>();
+        int userId = 1;
+        try {
+            usersIdStatement.setString(1, usrName);
+            ResultSet rs = usersIdStatement.executeQuery();
+            while (rs.next())
+                userId = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        rez = returnAllUsersReservation(userId);
+        return rez;
+    }
+
+    public Reservation returnUserReservation(String username){
+        int userId = 1;
+        Reservation reservation = null;
+        try {
+            usersIdStatement.setString(1, username);
+            ResultSet rs = usersIdStatement.executeQuery();
+            while (rs.next())
+                userId = rs.getInt(1);
+            returnReservationStm.setInt(1, userId);
+            rs=returnReservationStm.executeQuery();
+            while(rs.next()) {
+                String date = rs.getString(2);
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate ld = LocalDate.parse(date, df);
+                reservation = new Reservation(rs.getInt(1), ld, rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservation;
+    }
+
+    public void deleteReservationFromDatabase(String username) {
+        int userId=1;
+        try {
+            usersIdStatement.setString(1, username);
+            ResultSet rs = usersIdStatement.executeQuery();
+            while (rs.next())
+                userId = rs.getInt(1);
+            deleteReservationStm.setInt(1,userId);
+            deleteReservationStm.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 }
 

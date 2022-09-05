@@ -34,7 +34,7 @@ public class EditUserController {
     public ToggleGroup polGroup;
     public RadioButton femaleBtn;
     User user = null;
-    public int idEditUser;
+    public int idEditUser=0;
     DatabaseDAO dao = DatabaseDAO.getInstance();
 
     public EditUserController(int id) throws SQLException {
@@ -73,6 +73,7 @@ public class EditUserController {
     }
 
     public void okBtnAction(ActionEvent actionEvent) {
+        System.out.println(idEditUser);
         String pol = "Male";
         if(femaleBtn.isSelected()) pol = "Female";
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());

@@ -52,7 +52,7 @@ public class AddReservationController {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (item.isBefore(LocalDate.now())) { //Disable all dates after required date
+                        if (item.isBefore(LocalDate.now().plusDays(1))) { //Disable all dates after required date
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
                         }
@@ -96,24 +96,15 @@ public class AddReservationController {
     }
 
     public void okBtnAction(ActionEvent actionEvent) {
-       // String[] time = timeChoiceBox.getSelectionModel().getSelectedItem().split(" ");
         ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
-      //  ArrayList<Reservation> r = null;
-
-//            r = dao.returnAllReservations(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem());
-//        if(!r.isEmpty()){
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle(bundle.getString("error"));
-//            alert.setHeaderText(bundle.getString("not_correctly_fulfilled_infos"));
-//            alert.setContentText(bundle.getString("click_ok_try_again"));
-//            alert.showAndWait();
-//        }
-   //     else{
-
-
-        var reservations = dao.returnAllUsersReservation(choiceUserBox.getSelectionModel().getSelectedItem().getId());
-
-           if(!reservations.isEmpty()){
+        if(choiceUserBox.getSelectionModel().getSelectedItem()==null|| timeChoiceBox.getSelectionModel().getSelectedItem()==null|| datePickerId.getValue()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(bundle.getString("error"));
+            alert.setHeaderText("NEVALJAAAAAA");
+            alert.setContentText(bundle.getString("click_ok_try_again"));
+            alert.showAndWait();
+        }
+        else if(!dao.returnAllUsersReservation(choiceUserBox.getSelectionModel().getSelectedItem().getId()).isEmpty()){
                Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
             alert.setHeaderText("USER ALREADY HAVE ONE (MAX) RESERVATION");

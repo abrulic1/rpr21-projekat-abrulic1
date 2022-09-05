@@ -52,7 +52,7 @@ public class EditReservationController {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (item.isBefore(LocalDate.now())) { //Disable all dates after required date
+                        if (item.isBefore(LocalDate.now().plusDays(1))) { //Disable all dates after required date
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
                         }
@@ -87,7 +87,6 @@ public class EditReservationController {
     public void plusBtnAction(ActionEvent actionEvent) {
         String[] numbers = numberOfGuestsLabel.getText().split(" ");
         int number = Integer.parseInt(numbers[0]);
-        if(number==1) return;
         numberOfGuestsLabel.setText(String.valueOf((number+1))+ " " +bundle.getString("guests"));
     }
 
@@ -97,23 +96,10 @@ public class EditReservationController {
     }
 
     public void okBtnAction(ActionEvent actionEvent) {
-       // String[] time = choiceTime.getSelectionModel().getSelectedItem().split(" ");
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
-//        ArrayList<Reservation> r = null;
-//
-//        r = dao.returnAllReservations(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem());
-//        if(!r.isEmpty()){
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle(bundle.getString("error"));
-//            alert.setHeaderText(bundle.getString("not_correctly_fulfilled_infos"));
-//            alert.setContentText(bundle.getString("click_ok_try_again"));
-//            alert.showAndWait();
-//        }
-      //  else{
-            String[] string = numberOfGuestsLabel.getText().split(" ");
+             String[] string = numberOfGuestsLabel.getText().split(" ");
             dao.editReservation(datePickerId.getValue(), timeChoiceBox.getSelectionModel().getSelectedItem(), Integer.parseInt(string[0]), editReservationId, choiceUserBox.getSelectionModel().getSelectedItem().getId(), choiceUserBox.getSelectionModel().getSelectedItem().getName(), choiceUserBox.getSelectionModel().getSelectedItem().getSurname());
             Stage s = (Stage) cancelBtn.getScene().getWindow();
             s.close();
-        //}
+
     }
 }

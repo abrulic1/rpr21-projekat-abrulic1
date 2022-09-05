@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -34,27 +35,25 @@ public class ViewMenuController {
     public TextField surnameField;
     public TextField emailField;
     public DatePicker datePickerId;
-    public ChoiceBox choiceBoxId;
+    public ChoiceBox<String> choiceBoxId;
     public TextField usernameId;
-    public TextField passwordId;
+    public PasswordField passwordId;
     public Button submitButton;
     public ListView<String> listViewId;
     public Label totalNumberLabel;
     public Button checkReservationButton;
     public Button deleteItemBtn;
+    public Button minusBtn;
+    public Label numberOfGuestsLabel;
+    public Button plusBtn;
     ResourceBundle bundle = ResourceBundle.getBundle("Translation_" + Locale.getDefault().toString());
     DatabaseDAO dao = DatabaseDAO.getInstance();
     double total = 0;
-    private String usrName;
+    public String usrName;
     private ArrayList<String> time = new ArrayList<>();
 
     public ViewMenuController(String username) throws SQLException {
-        System.out.println(usrName);
         usrName=username;
-    }
-
-
-    public ViewMenuController() throws SQLException {
         time.add("11:00 AM");
         time.add("12:00 AM");
         time.add("01:00 PM");
@@ -73,6 +72,8 @@ public class ViewMenuController {
 @FXML
     public void initialize() {
         listViewId.setItems(dao.getAllWishlistItems(usrName));
+    System.out.println(dao.getAllWishlistItems(usrName).size());
+    System.out.println(usrName);
         choiceBoxId.setItems(FXCollections.observableList(time));
         choiceBoxId.getSelectionModel().selectFirst();
         total=dao.returnTotalFromWishlist(usrName);
@@ -82,7 +83,7 @@ public class ViewMenuController {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (item.isBefore(LocalDate.now())) { //Disable all dates after required date
+                        if (item.isBefore(LocalDate.now().plusDays(1))) { //Disable all dates after required date
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
                         }
@@ -145,15 +146,63 @@ public class ViewMenuController {
     }
 
     public void submitReservationAction(ActionEvent actionEvent) {
-        var users = dao.returnAllUsers(usernameId.getText());
-        if(users.isEmpty()){
+       User user = dao.getUser(usernameId.getText(), passwordId.getText());
+        if(user==null){
             //nema takvih podataka, provjerite username i password
-        }else if(!users.isEmpty()){
-            ///provjeriti da li se podaci podudaraju
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(bundle.getString("error"));
+            alert.setHeaderText(bundle.getString("invalid_username_password"));
+            alert.setContentText(bundle.getString("click_ok_try_again"));
+            alert.showAndWait();
         }
+        else if(user!=null && usernameId.getText().equals(user.getUsername()) && nameField.getText().equals(user.getName()) &&
+                surnameField.getText().equals(user.getSurname()) && usernameId.getText().equals(usrName) && emailField.getText().equals(user.getEmail()) && passwordId.getText().equals(user.getPassword())) {
+           if (!dao.returnAllUsersReservation(usrName).isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(bundle.getString("error"));
+                alert.setHeaderText("vec imate jednu rezervsciju");
+                alert.setContentText(bundle.getString("click_ok_try_again"));
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("I have a great message for you!");
+               String[] string = numberOfGuestsLabel.getText().split(" ");
+               dao.addNewReservation(datePickerId.getValue(), choiceBoxId.getSelectionModel().getSelectedItem(), Integer.parseInt(string[0]), user.getId(), user.getName(), user.getSurname());
+                alert.showAndWait();
+            }
+        }
+            else if(user!=null && !usernameId.getText().equals(user.getUsername()) || !nameField.getText().equals(user.getName()) ||
+                !surnameField.getText().equals(user.getSurname()) || !usernameId.getText().equals(usrName) || !emailField.getText().equals(user.getEmail()) || !passwordId.getText().equals(user.getPassword())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle(bundle.getString("error"));
+                    alert.setHeaderText("Ne podurdaraju se podaci");
+                    alert.setContentText(bundle.getString("click_ok_try_again"));
+                    alert.showAndWait();
+                }
     }
 
-    public void checkReservationAction(ActionEvent actionEvent) {
+    public void checkReservationAction(ActionEvent actionEvent) throws IOException, SQLException {
+        if(!dao.returnAllUsersReservation(usrName).isEmpty()) {
+            CheckReservationController kontroler = new CheckReservationController(usrName);
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/user panel/check-reservation.fxml"), bundle);
+            loader.setController(kontroler);
+            Parent root = loader.load();
+            stage.setTitle(bundle.getString("your_reservation"));
+           // stage.getIcons().add(new Image("/images/add-user.png"));
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(false);
+            stage.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(bundle.getString("error"));
+            alert.setHeaderText(bundle.getString("invalid_username_password"));
+            alert.setContentText(bundle.getString("click_ok_try_again"));
+            alert.showAndWait();
+        }
+
     }
 
 
@@ -170,4 +219,16 @@ public class ViewMenuController {
     }
 
 
+    public void minusBtnAction(ActionEvent actionEvent) {
+        String[] numbers = numberOfGuestsLabel.getText().split(" ");
+        int number = Integer.parseInt(numbers[0]);
+        if(number==1) return;
+        numberOfGuestsLabel.setText(String.valueOf((number-1))+ " " +bundle.getString("guests"));
+    }
+
+    public void plusBtnAction(ActionEvent actionEvent) {
+        String[] numbers = numberOfGuestsLabel.getText().split(" ");
+        int number = Integer.parseInt(numbers[0]);
+        numberOfGuestsLabel.setText(String.valueOf((number+1))+ " " +bundle.getString("guests"));
+    }
 }

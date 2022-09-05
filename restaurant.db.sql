@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS "reservations" (
 );
 INSERT INTO "admins" VALUES (1,'Almina','Brulic','alminabr@hotmail.com','admin','admin');
 INSERT INTO "users" VALUES (1,'Neko','Nekic','nnekic@gmail.com','nnekic','nnekic1234','Male');
-INSERT INTO "users" VALUES (2,'Svako','Svakic','ssvakic@gmail.com','ssvakic','ssvakic123','Female');
-INSERT INTO "users" VALUES (3,'Niko','Nikic','nikic@hotmail.com','nikic','nikic123','Male');
+INSERT INTO "users" VALUES (3,'Niko','Nikic','nikic@hotmail.com','nnkic','nikic123','Male');
 INSERT INTO "menuitem" VALUES (1,'Lentil bolognese',20.0,'yes','no');
 INSERT INTO "menuitem" VALUES (2,'Southwestern Pasta Salad',15.95,'yes','yes');
 INSERT INTO "menuitem" VALUES (3,'Garlic Pasta',10.0,'no','no');
 INSERT INTO "menuitem" VALUES (4,'Vegan Pasta',25.0,'yes','yes');
 INSERT INTO "menuitem" VALUES (5,'Spaghetti',7.5,'no','yes');
+INSERT INTO "reservations" VALUES (1,'2022-09-09','11:00 AM',4,1,'Neko','Nekic');
 COMMIT;

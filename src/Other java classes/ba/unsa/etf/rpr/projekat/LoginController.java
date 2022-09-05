@@ -92,9 +92,8 @@ public class LoginController {
             stage.close();
             ViewMenuController kontroler = new ViewMenuController(usernameField.getText());
              stage = new Stage();
-             FXMLLoader loader = new FXMLLoader();
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/user panel/viewMenu.fxml"), bundle);
              loader.setController(kontroler);
-             loader = new FXMLLoader(getClass().getResource("/fxml/user panel/viewMenu.fxml"), bundle);
              Parent root = loader.load();
              stage.setTitle(bundle.getString("user"));
              stage.getIcons().add(new Image("/images/add-user.png"));

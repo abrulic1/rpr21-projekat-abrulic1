@@ -5,8 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import java.net.URL?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="223.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AddMenuItemController">
-  <columnConstraints>
+    <stylesheets>
+        <URL value="@/css/login.css" />
+    </stylesheets>
+    <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.20000000000002" minWidth="149.20000000000002" prefWidth="184.20000000000002" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.20000000000002" minWidth="123.20000000000002" prefWidth="123.20000000000002" />
       <ColumnConstraints />

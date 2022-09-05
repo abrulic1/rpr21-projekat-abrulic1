@@ -88,7 +88,7 @@ public class AdministratorController {
         guestsReservationTable.setCellValueFactory(new PropertyValueFactory<>("numberOfGuests"));
         guestIdTbl.setCellValueFactory(new PropertyValueFactory<>("userId"));
         guestNameTbl.setCellValueFactory(new PropertyValueFactory<>("guest_name"));
-      guestSurnameTbl.setCellValueFactory(new PropertyValueFactory<>("guest_surname"));
+       guestSurnameTbl.setCellValueFactory(new PropertyValueFactory<>("guest_surname"));
         reservationsTableView.setItems(dao.returnAllReservations());
         idMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameMenuTblColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -105,7 +105,6 @@ public class AdministratorController {
         stage.close();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"), bundle);
         stage.setTitle(bundle.getString("login"));
-        //kako podesiti da se vrati al na popunjene podatke??
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
     }
@@ -169,7 +168,7 @@ public class AdministratorController {
             kontroler.surnameFld.setText(usr.getSurname());
             kontroler.emailFld.setText(usr.getEmail());
             kontroler.passwordFld.setText(usr.getPassword());
-            Platform.runLater(() -> kontroler.passwordFld.setVisible(true));   //ne radi ovo..
+            Platform.runLater(() -> kontroler.passwordFld.setVisible(true));
             if(usr.getGender().equals("Female"))
                 kontroler.femaleBtn.setSelected(true);
             else kontroler.maleBtn.setSelected(true);
@@ -178,7 +177,6 @@ public class AdministratorController {
             usersTableView.getItems().clear();
             usersTableView.setItems(dao.returnAllUsers());
             usersTableView.refresh();
-            /////////////////MOGU I SETONHIDING OVDJE UMJESTO OVE 3 LINIJE /////////////////////////
         }
     }
 
@@ -309,7 +307,6 @@ public class AdministratorController {
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             kontroler.nameField.setText(menuitem.getName());
             //kontroler.priceField.setValueFactory();
-            //ovdje ovo no yes za bosanski i engleski regulisati
             if(menuitem.getVegan().equals("no"))
                 kontroler.veganId.setSelected(false);
             else kontroler.veganId.setSelected(true);

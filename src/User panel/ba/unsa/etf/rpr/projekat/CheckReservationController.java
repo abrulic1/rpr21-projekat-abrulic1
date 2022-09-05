@@ -46,7 +46,6 @@ public class CheckReservationController {
         else{
             dao.deleteReservationFromDatabase(username);
             clickHereLabel.setDisable(true);
-            //information dialog
         }
     }
 

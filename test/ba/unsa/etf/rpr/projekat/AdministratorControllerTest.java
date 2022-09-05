@@ -93,7 +93,7 @@ class AdministratorControllerTest {
 
         robot.clickOn("#okBtn");
 
-        assertEquals(2, dao.returnAllUsers().size());
+        assertEquals(3, dao.returnAllUsers().size());
 
         boolean added=false;
         if(!dao.returnAllUsers("novic").isEmpty())
@@ -212,9 +212,7 @@ class AdministratorControllerTest {
         robot.clickOn("#nameField");
         robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
         robot.write("NewCevapcici");
-        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        robot.clickOn(okButton);
+        robot.clickOn("#okBtn");
         boolean edited = false;
         if(dao.returnAllMenuItems("cevapi").isEmpty()) edited=true;
         if(dao.returnAllMenuItems("NewCevapcici").isEmpty())edited=false;

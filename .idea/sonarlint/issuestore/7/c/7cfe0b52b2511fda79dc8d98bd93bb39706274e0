@@ -1,23 +1,0 @@
-
-—
-java:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ì™½
-`
-java:S3252:"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(ü‚„‡şÿÿÿÿ
-H
-java:S1172>"2Remove this unused method parameter "actionEvent".(ôÜ¿í
-P
-java:S1117A":Rename "bundle" which hides the field declared at line 34.(àõ¥
-H
-java:S1172M"2Remove this unused method parameter "actionEvent".(ûÖ÷ö
-p
-java:S1104"UMake imageView a static final constant or non-public and provide accessors if needed.(…Çªúÿÿÿÿ
-m
-java:S1104"WMake viewMenuBtn a static final constant or non-public and provide accessors if needed.(©‹É
-q
-java:S1104"VMake reserveBtn a static final constant or non-public and provide accessors if needed.(—ÊÊõıÿÿÿÿ
-q
-java:S1104"VMake signoutBtn a static final constant or non-public and provide accessors if needed.(Éå¯Åşÿÿÿÿ
-l
-java:S1104"VMake borderpane a static final constant or non-public and provide accessors if needed.(û€ª—
-q
-java:S1104"VMake titleLabel a static final constant or non-public and provide accessors if needed.(í˜Öîùÿÿÿÿ

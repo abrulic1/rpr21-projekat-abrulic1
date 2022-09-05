@@ -79,8 +79,6 @@ public class ViewMenuController {
         checkReservationButton.wrapTextProperty().setValue(true);
         submitButton.wrapTextProperty().setValue(true);
         listViewId.setItems(dao.getAllWishlistItems(usrName));
-    System.out.println(dao.getAllWishlistItems(usrName).size());
-    System.out.println(usrName);
         choiceBoxId.setItems(FXCollections.observableList(time));
         choiceBoxId.getSelectionModel().selectFirst();
         total=dao.returnTotalFromWishlist(usrName);
@@ -198,7 +196,7 @@ public class ViewMenuController {
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
-            alert.setHeaderText(bundle.getString("invalid_username_password"));
+            alert.setHeaderText(bundle.getString("you_dont_have_any_reservation"));
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
         }

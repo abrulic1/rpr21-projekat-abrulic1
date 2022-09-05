@@ -138,7 +138,7 @@ public class DatabaseDAO {
     public void createBase() {
         Scanner ulaz = null;
         try {
-            ulaz = new Scanner(new FileInputStream("users.sql"));
+            ulaz = new Scanner(new FileInputStream("restaurant.db.sql"));
             String sqlUpit = "";
             while (ulaz.hasNext()) {
                 sqlUpit += ulaz.nextLine();
@@ -154,7 +154,7 @@ public class DatabaseDAO {
             }
             ulaz.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Ne postoji SQL datoteka... nastavljam sa praznom bazom");
+            System.out.println("There is no SQL file... I continue with an empty database");
         }
     }
 

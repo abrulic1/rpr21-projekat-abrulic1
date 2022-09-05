@@ -1,0 +1,17 @@
+
+o	java:S116"URename this field "guest_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÝ²£ýÿÿÿÿ
+r	java:S116"XRename this field "guest_surname" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÝ²£ýÿÿÿÿ
+F
+java:S1659"+Declare "guest_surname" on a separate line.(îÝ²£ýÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ µÀ
+b	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Íóµ
+b	java:S100!"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¬ø
+h	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬§„—üÿÿÿÿ
+U
+java:S1128"?Remove this unused import 'java.time.format.DateTimeFormatter'.(‰÷÷ª
+A
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü
+e	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆõÚ>
+e	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆõÚ>
+e	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Íóµ
+k	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬§„—üÿÿÿÿ

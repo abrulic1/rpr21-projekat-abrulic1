@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS "wishlist" (
 	"userId"	INTEGER,
 	"menuitem"	TEXT,
 	"price"	NUMERIC,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("userId") REFERENCES "users"("id")
+	FOREIGN KEY("userId") REFERENCES "users"("id"),
+	PRIMARY KEY("id")
 );
 CREATE TABLE IF NOT EXISTS "reservations" (
 	"id"	INTEGER,
@@ -42,16 +42,20 @@ CREATE TABLE IF NOT EXISTS "reservations" (
 	"userId"	INTEGER,
 	"guest_name"	TEXT,
 	"guest_surname"	TEXT,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("userId") REFERENCES "users"("id")
+	FOREIGN KEY("userId") REFERENCES "users"("id"),
+	PRIMARY KEY("id")
 );
 INSERT INTO "admins" VALUES (1,'Almina','Brulic','alminabr@hotmail.com','admin','admin');
-INSERT INTO "users" VALUES (1,'Neko','Nekic','nnekic@gmail.com','nnekic','nnekic1234','Male');
-INSERT INTO "users" VALUES (3,'Niko','Nikic','nikic@hotmail.com','nnkic','nikic123','Male');
+INSERT INTO "users" VALUES (1,'Neko','Nekic','nnekic@gmail.com','nekic','nekic','Male');
+INSERT INTO "users" VALUES (2,'Ana','Anic','anic@gmail.com','ana','ana','Female');
 INSERT INTO "menuitem" VALUES (1,'Lentil bolognese',20.0,'yes','no');
 INSERT INTO "menuitem" VALUES (2,'Southwestern Pasta Salad',15.95,'yes','yes');
 INSERT INTO "menuitem" VALUES (3,'Garlic Pasta',10.0,'no','no');
 INSERT INTO "menuitem" VALUES (4,'Vegan Pasta',25.0,'yes','yes');
 INSERT INTO "menuitem" VALUES (5,'Spaghetti',7.5,'no','yes');
-INSERT INTO "reservations" VALUES (1,'2022-09-09','11:00 AM',4,1,'Neko','Nekic');
+INSERT INTO "menuitem" VALUES (6,'cevapi',5.0,'no','no');
+INSERT INTO "wishlist" VALUES (1,2,'Spaghetti',7.5);
+INSERT INTO "wishlist" VALUES (2,1,'Vegan Pasta',25);
+INSERT INTO "wishlist" VALUES (4,1,'cevapi',5);
+INSERT INTO "reservations" VALUES (1,'2022-09-09','11:00 AM',4,2,'Ana','Anic');
 COMMIT;

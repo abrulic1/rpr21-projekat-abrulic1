@@ -100,26 +100,19 @@ public class LoginController {
              stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
              stage.setResizable(false);
              stage.showAndWait();
-
-//             Stage stage = (Stage)registerBtn.getScene().getWindow();
-//             stage.close();
-//             Parent root = FXMLLoader.load(getClass().getResource("/fxml/user panel/user-main.fxml"), bundle);
-//             stage.getIcons().add(new Image("/images/admin.png"));
-//             stage.setTitle(bundle.getString("administrator"));
-//             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//             stage.setResizable(true);
-//             stage.show();
-
         }
         else if(Administrator.isSelected() && admin!=null){
             Stage stage = (Stage)registerBtn.getScene().getWindow();
             stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/admin panel/administrator-main.fxml"), bundle);
-            stage.getIcons().add(new Image("/images/admin.png"));
-            stage.setTitle(bundle.getString("administrator"));
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(true);
-            stage.show();
+             AdministratorController kontroler = new AdministratorController();
+             stage = new Stage();
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin panel/administrator-main.fxml"), bundle);
+             loader.setController(kontroler);
+             Parent root = loader.load();
+             stage.setTitle(bundle.getString("administrator"));
+             stage.getIcons().add(new Image("/images/admin.png"));
+             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+             stage.showAndWait();
         }
     }
     public void englishLanguageAction(ActionEvent actionEvent) {

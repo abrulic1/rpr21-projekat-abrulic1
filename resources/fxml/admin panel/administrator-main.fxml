@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="715.0" style="-fx-background-color: #00001a;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdministratorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="715.0" style="-fx-background-color: #00001a;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/admin.css" />
     </stylesheets>
@@ -61,7 +61,7 @@
                             </right></BorderPane>
                     </content>
                 </Tab>
-                <Tab text="%reservations">
+                <Tab fx:id="tabReservations" text="%reservations">
                     <content>
                         <BorderPane>
                             <center>
@@ -95,7 +95,7 @@
                                                 <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                                             </VBox.margin>
                                         </Button>
-                                        <Button fx:id="printReservationBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printReservationAction" prefHeight="46.0" prefWidth="80.0" text="%print_todays_res">
+                                        <Button fx:id="printReservationBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printReservationAction" prefHeight="46.0" prefWidth="80.0" text="%print_todays_res" textAlignment="CENTER">
                                             <VBox.margin>
                                                 <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                                             </VBox.margin></Button>
@@ -113,7 +113,7 @@
                             </right></BorderPane>
                     </content>
                 </Tab>
-                <Tab text="%menu">
+                <Tab fx:id="tabMenu" text="%menu">
                     <content>
                         <BorderPane>
                             <center>

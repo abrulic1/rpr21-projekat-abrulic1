@@ -1,0 +1,17 @@
+
+‰
+java:S1130"sRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from constructor's body.(íğ
+L
+java:S1172&"1Remove this unused method parameter "mouseEvent".(ìù øúÿÿÿÿ
+M
+java:S11725"2Remove this unused method parameter "actionEvent".(‡¹ëœşÿÿÿÿ
+j
+java:S1104"TMake closeBtn a static final constant or non-public and provide accessors if needed.(€‹™
+k
+java:S1104"UMake dateLabel a static final constant or non-public and provide accessors if needed.(­˜¸¸
+k
+java:S1104"UMake timeLabel a static final constant or non-public and provide accessors if needed.(óÇõà
+u
+java:S1104"ZMake clickHereLabel a static final constant or non-public and provide accessors if needed.(·Åóòùÿÿÿÿ
+j
+java:S1104"TMake username a static final constant or non-public and provide accessors if needed.(Ü±›Ô

@@ -1,0 +1,88 @@
+
+
+java:S11307"sRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from constructor's body.(ïãÀÅûÿÿÿÿ
+S	java:S106R"9Replace this use of System.out or System.err by a logger.(™õ¿÷üÿÿÿÿ
+N	java:S106S"9Replace this use of System.out or System.err by a logger.(šÀ÷Ğ
+H
+java:S1172n"2Remove this unused method parameter "actionEvent".(ûÖ÷ö
+H
+java:S1172w"2Remove this unused method parameter "actionEvent".(Ï÷ÿ°
+M
+java:S1172‰"1Remove this unused method parameter "mouseEvent".(éÿˆ©üÿÿÿÿ
+G
+java:S1172"1Remove this unused method parameter "mouseEvent".(¤ê¾6
+H
+java:S1172‘"1Remove this unused method parameter "mouseEvent".(èÅÛë
+N
+java:S1172•"2Remove this unused method parameter "actionEvent".(‡Äçûÿÿÿÿ
+N
+java:S1172»"2Remove this unused method parameter "actionEvent".(¹‘­ÿÿÿÿÿ
+I
+java:S1172Ğ"2Remove this unused method parameter "actionEvent".(Èåº›
+e
+java:S1858Õ"I"getSelectedItem" returns a string, there's no need to call "toString()".(½¤øÿÿÿÿ
+I
+java:S1172Û"2Remove this unused method parameter "actionEvent".(ï¿¾í
+N
+java:S1172â"2Remove this unused method parameter "actionEvent".(‹Ã¬üÿÿÿÿ
+]
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleStringProperty'.(ûĞùÑ
+K
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç
+b
+java:S1192š"FDefine a constant instead of duplicating this literal "error" 4 times.(©ğì¬ÿÿÿÿÿ
+j
+java:S1192œ"SDefine a constant instead of duplicating this literal "click_ok_try_again" 4 times.(Ü½ºĞ
+V	java:S110Y"<This class has 8 parents which is greater than 5 authorized.(Ë¼‚”øÿÿÿÿ
+q
+java:S1104"VMake viewAllBtn a static final constant or non-public and provide accessors if needed.(¥Ê¾Æøÿÿÿÿ
+o
+java:S1104"TMake veganBtn a static final constant or non-public and provide accessors if needed.(üÂıèşÿÿÿÿ
+o
+java:S1104"YMake vegetarianBtn a static final constant or non-public and provide accessors if needed.(ŠùëŠ
+q
+java:S1104"VMake signoutBtn a static final constant or non-public and provide accessors if needed.(Éå¯Åşÿÿÿÿ
+p
+java:S1104"UMake tableView a static final constant or non-public and provide accessors if needed.(Ûú²Òşÿÿÿÿ
+n
+java:S1104"SMake nameTbl a static final constant or non-public and provide accessors if needed.(¤¿Æûúÿÿÿÿ
+q
+java:S1104 "VMake priceTable a static final constant or non-public and provide accessors if needed.(àˆøÿÿÿÿ
+r
+java:S1104!"\Make addToWishlistBtn a static final constant or non-public and provide accessors if needed.(¶áî­
+p
+java:S1104""UMake nameField a static final constant or non-public and provide accessors if needed.(¾Àˆÿÿÿÿÿ
+s
+java:S1104#"XMake surnameField a static final constant or non-public and provide accessors if needed.(–Ãâúÿÿÿÿ
+q
+java:S1104$"VMake emailField a static final constant or non-public and provide accessors if needed.(şãÓâúÿÿÿÿ
+s
+java:S1104%"XMake datePickerId a static final constant or non-public and provide accessors if needed.(®ÖŞøùÿÿÿÿ
+m
+java:S1104&"WMake choiceBoxId a static final constant or non-public and provide accessors if needed.(º³ªŠ
+q
+java:S1104'"VMake usernameId a static final constant or non-public and provide accessors if needed.(Ãü·€ıÿÿÿÿ
+q
+java:S1104("VMake passwordId a static final constant or non-public and provide accessors if needed.(ì©õùÿÿÿÿ
+s
+java:S1104)"XMake submitButton a static final constant or non-public and provide accessors if needed.(¦ƒ’ÿÿÿÿÿ
+q
+java:S1104*"VMake listViewId a static final constant or non-public and provide accessors if needed.(ä–ïúÿÿÿÿ
+r
+java:S1104+"\Make totalNumberLabel a static final constant or non-public and provide accessors if needed.(ÈğÃÁ
+x
+java:S1104,"bMake checkReservationButton a static final constant or non-public and provide accessors if needed.(Ñ¬•­
+o
+java:S1104-"YMake deleteItemBtn a static final constant or non-public and provide accessors if needed.(êÖö
+o
+java:S1104."TMake minusBtn a static final constant or non-public and provide accessors if needed.(ŞÒºÛúÿÿÿÿ
+u
+java:S1104/"_Make numberOfGuestsLabel a static final constant or non-public and provide accessors if needed.(¨á—Ï
+n
+java:S11040"SMake plusBtn a static final constant or non-public and provide accessors if needed.(çœÂ»ûÿÿÿÿ
+i
+java:S11044"SMake usrName a static final constant or non-public and provide accessors if needed.(…›ÏÁ
+S
+java:S2589±"7Remove this expression which always evaluates to "true"(‰ûÏ ıÿÿÿÿ
+M
+java:S2589Ÿ"7Remove this expression which always evaluates to "true"(ˆ˜ª

@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import javax.swing.*;
 import java.sql.SQLException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -62,18 +63,6 @@ public class AddReservationController {
                         }
                     }
                 });
-//        datePickerId.setConverter(new StringConverter<LocalDate>() {
-//            @Override
-//            public String toString(LocalDate localDate) {
-//               DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//               return df.format(localDate);
-//            }
-//
-//            @Override
-//            public LocalDate fromString(String s) {
-//                return null;
-//            }
-//        });
 
     }
 
@@ -100,14 +89,14 @@ public class AddReservationController {
         if(choiceUserBox.getSelectionModel().getSelectedItem()==null|| timeChoiceBox.getSelectionModel().getSelectedItem()==null|| datePickerId.getValue()==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
-            alert.setHeaderText("NEVALJAAAAAA");
+            alert.setHeaderText(bundle.getString("invalid_data"));
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
         }
         else if(!dao.returnAllUsersReservation(choiceUserBox.getSelectionModel().getSelectedItem().getId()).isEmpty()){
                Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
-            alert.setHeaderText("USER ALREADY HAVE ONE (MAX) RESERVATION");
+            alert.setHeaderText(bundle.getString("you_already_have_one_reservation"));
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
            }

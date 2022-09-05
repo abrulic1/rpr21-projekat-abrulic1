@@ -62,18 +62,6 @@ public class EditReservationController {
                         }
                     }
                 });
-//        datePicker.setConverter(new StringConverter<LocalDate>() {
-//            @Override
-//            public String toString(LocalDate localDate) {
-//                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//                return df.format(localDate);
-//            }
-//
-//            @Override
-//            public LocalDate fromString(String s) {
-//                return null;
-//            }
-//        });
 
     }
 

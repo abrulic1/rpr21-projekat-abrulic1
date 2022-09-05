@@ -61,7 +61,7 @@
                               <Font name="Brush Script MT Italic" size="24.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="42.0" prefWidth="26.0" text="at" textFill="#edbfbf">
+                        <Label prefHeight="42.0" prefWidth="43.0" text="%at" textFill="#edbfbf">
                            <HBox.margin>
                               <Insets bottom="10.0" right="5.0" top="10.0" />
                            </HBox.margin>

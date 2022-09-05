@@ -1,33 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="252.0" styleClass="body" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/login.css" />
+    </stylesheets>
+    <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="218.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="296.0" text="%you_already_added_item" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="244.0" text="%you_already_added_item" textAlignment="CENTER" textFill="#ffb9b9">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
-            </Label>
-            <Label fx:id="labelForMenuitem" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="149.0" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ButtonBar prefHeight="18.0" prefWidth="265.0">
+              <buttons>
+                <Button mnemonicParsing="false" styleClass="buttons" text="%close" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+              </buttons>
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
-            </Label>
+            </ButtonBar>
          </children>
       </VBox>
    </children>

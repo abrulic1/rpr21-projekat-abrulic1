@@ -71,6 +71,13 @@ public class ViewMenuController {
 
 @FXML
     public void initialize() {
+        addToWishlistBtn.wrapTextProperty().setValue(true);
+        viewAllBtn.wrapTextProperty().setValue(true);
+        veganBtn.wrapTextProperty().setValue(true);
+        vegetarianBtn.wrapTextProperty().setValue(true);
+        deleteItemBtn.wrapTextProperty().setValue(true);
+        checkReservationButton.wrapTextProperty().setValue(true);
+        submitButton.wrapTextProperty().setValue(true);
         listViewId.setItems(dao.getAllWishlistItems(usrName));
     System.out.println(dao.getAllWishlistItems(usrName).size());
     System.out.println(usrName);
@@ -83,7 +90,7 @@ public class ViewMenuController {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (item.isBefore(LocalDate.now().plusDays(1))) { //Disable all dates after required date
+                        if (item.isBefore(LocalDate.now().plusDays(1))) {
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
                         }
@@ -116,7 +123,6 @@ public class ViewMenuController {
             total = total + tableView.getSelectionModel().getSelectedItem().getPrice();
             totalNumberLabel.setText(String.valueOf(total));
             dao.addItemOnWishlist(usrName, tableView.getSelectionModel().getSelectedItem().getName(), tableView.getSelectionModel().getSelectedItem().getPrice());
-           // dao.addOnWishList(usrName, tableView.getSelectionModel().getSelectedItem().getName(), tableView.getSelectionModel().getSelectedItem().getPrice());
         } else if (tableView.getSelectionModel().getSelectedItem() != null && listViewId.getItems().contains(tableView.getSelectionModel().getSelectedItem().getName())) {
            AlreadyAddedItemPopupController kontroler = new AlreadyAddedItemPopupController(tableView.getSelectionModel().getSelectedItem().getName());
             FXMLLoader  loader = new FXMLLoader(getClass().getResource("/fxml/user panel/alreadyAddedItem.fxml"), bundle);
@@ -124,11 +130,6 @@ public class ViewMenuController {
            loader.setController(kontroler);
            Parent root = loader.load();
            stage.setScene(new Scene(root));
-//            PauseTransition s = new PauseTransition(Duration.seconds(3));
-//            stage.showAndWait();
-//            s.setOnFinished(f->{
-//                stage.hide();
-//            });
             stage.show();
         }
     }
@@ -151,7 +152,7 @@ public class ViewMenuController {
             //nema takvih podataka, provjerite username i password
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("error"));
-            alert.setHeaderText(bundle.getString("invalid_username_password"));
+            alert.setHeaderText(bundle.getString("no_such_data"));
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
         }
@@ -160,14 +161,14 @@ public class ViewMenuController {
            if (!dao.returnAllUsersReservation(usrName).isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(bundle.getString("error"));
-                alert.setHeaderText("vec imate jednu rezervsciju");
+                alert.setHeaderText(bundle.getString("you_already_have_one_reservation"));
                 alert.setContentText(bundle.getString("click_ok_try_again"));
                 alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
+                alert.setTitle(bundle.getString("information"));
                 alert.setHeaderText(null);
-                alert.setContentText("I have a great message for you!");
+                alert.setContentText(bundle.getString("successful_reservation"));
                String[] string = numberOfGuestsLabel.getText().split(" ");
                dao.addNewReservation(datePickerId.getValue(), choiceBoxId.getSelectionModel().getSelectedItem(), Integer.parseInt(string[0]), user.getId(), user.getName(), user.getSurname());
                 alert.showAndWait();
@@ -177,7 +178,7 @@ public class ViewMenuController {
                 !surnameField.getText().equals(user.getSurname()) || !usernameId.getText().equals(usrName) || !emailField.getText().equals(user.getEmail()) || !passwordId.getText().equals(user.getPassword())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle(bundle.getString("error"));
-                    alert.setHeaderText("Ne podurdaraju se podaci");
+                    alert.setHeaderText(bundle.getString("check_your_data"));
                     alert.setContentText(bundle.getString("click_ok_try_again"));
                     alert.showAndWait();
                 }
@@ -191,7 +192,6 @@ public class ViewMenuController {
             loader.setController(kontroler);
             Parent root = loader.load();
             stage.setTitle(bundle.getString("your_reservation"));
-           // stage.getIcons().add(new Image("/images/add-user.png"));
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(false);
             stage.showAndWait();
@@ -202,7 +202,6 @@ public class ViewMenuController {
             alert.setContentText(bundle.getString("click_ok_try_again"));
             alert.showAndWait();
         }
-
     }
 
 
@@ -213,8 +212,6 @@ public class ViewMenuController {
             totalNumberLabel.setText(String.valueOf(total));
             listViewId.getItems().remove(listViewId.getSelectionModel().getSelectedItem().toString());
             listViewId.refresh();
-
-            //da uzme cijenenu iz baze i oduzme
         }
     }
 

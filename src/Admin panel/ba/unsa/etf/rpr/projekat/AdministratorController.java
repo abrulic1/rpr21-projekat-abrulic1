@@ -73,6 +73,7 @@ public class AdministratorController {
 
     @FXML
     public void initialize(){
+        printReservationBtn.wrapTextProperty().setValue(true);
         idUserTblColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameUserTblColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnameUserTblColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));

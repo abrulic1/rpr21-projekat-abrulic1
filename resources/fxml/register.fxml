@@ -63,6 +63,30 @@
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin></TextField>
+            <TextField fx:id="surnameFld" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="emailFld" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="usernameFld" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
                 <PasswordField fx:id="passwordFld" GridPane.columnIndex="1" GridPane.rowIndex="9">
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -70,6 +94,14 @@
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin></PasswordField>
+            <PasswordField fx:id="submitPasswordField" layoutX="153.0" layoutY="307.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </PasswordField>
                 <Pane prefHeight="91.0" prefWidth="399.0" GridPane.columnSpan="2" GridPane.rowIndex="13">
                     <children>
                         <RadioButton fx:id="femaleBttn" layoutX="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" text="%female" textFill="WHITE">
@@ -119,22 +151,6 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="surnameFld" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="emailFld" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </TextField>
             <Label fx:id="haveAnAccountLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="398.0" text="%Already_have_an_account?" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="14" />
             <Label fx:id="signInLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#signInLabelClicked" prefHeight="18.0" prefWidth="101.0" text="%sign_in" textFill="#f4f4f4" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="15">
                <GridPane.margin>
@@ -148,14 +164,6 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameFld" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </TextField>
             <Label fx:id="passwordLengthLabel" prefHeight="18.0" prefWidth="244.0" textFill="#e20202" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <font>
                   <Font size="10.0" />
@@ -183,14 +191,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="submitPasswordField" layoutX="153.0" layoutY="307.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </PasswordField>
             <Label fx:id="passwordLengthLabel2" layoutX="153.0" layoutY="332.0" prefHeight="18.0" prefWidth="244.0" textFill="#e20202" GridPane.columnIndex="1" GridPane.rowIndex="12">
                <font>
                   <Font size="10.0" />

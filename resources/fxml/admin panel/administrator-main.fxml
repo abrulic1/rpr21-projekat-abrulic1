@@ -95,7 +95,7 @@
                                                 <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                                             </VBox.margin>
                                         </Button>
-                                        <Button fx:id="printReservationBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printReservationAction" prefHeight="40.0" prefWidth="80.0" text="%printBtnTbl">
+                                        <Button fx:id="printReservationBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printReservationAction" prefHeight="46.0" prefWidth="80.0" text="%print_todays_res">
                                             <VBox.margin>
                                                 <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                                             </VBox.margin></Button>

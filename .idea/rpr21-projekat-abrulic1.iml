@@ -6,8 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/Admin panel" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Other java classes" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/User panel" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Common java classes" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/Controllers" />
       <excludeFolder url="file://$MODULE_DIR$/src/Model" />
     </content>
@@ -155,6 +156,14 @@
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="net.sf.jasperreports" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="javafx" level="project" />

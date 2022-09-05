@@ -317,7 +317,7 @@ public class DatabaseDAO {
         int id = 1;
         try {
             ResultSet rs = findMaxIdReservationStm.executeQuery();
-            if (rs.next()) id = rs.getInt(1);
+            while (rs.next()) id = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -594,10 +594,17 @@ public class DatabaseDAO {
     public int getUsersId(String usrName) {
         int id = 0;
         try {
+            int counter=0;
             usersIdStatement.setString(1, usrName);
             ResultSet rs = usersIdStatement.executeQuery();
-            while (rs.next()) id = rs.getInt(1);
+            while (rs.next()) {
+                counter++;
+                id = rs.getInt(1);
+            }
+            if(counter>1) throw new InvalidUsernameException("In database are more than one user with username: "+usrName);
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InvalidUsernameException e) {
             e.printStackTrace();
         }
         return id;
@@ -607,11 +614,17 @@ public class DatabaseDAO {
         ArrayList<Reservation> rez = new ArrayList<>();
         int userId = 1;
         try {
+            int counter =0;
             usersIdStatement.setString(1, usrName);
             ResultSet rs = usersIdStatement.executeQuery();
-            while (rs.next())
+            while (rs.next()) {
                 userId = rs.getInt(1);
+                counter++;
+            }
+            if(counter>1) throw new InvalidUsernameException("In database are more than one user with username: "+usrName);
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InvalidUsernameException e) {
             e.printStackTrace();
         }
         rez = returnAllUsersReservation(userId);
@@ -643,16 +656,21 @@ public class DatabaseDAO {
     public void deleteReservationFromDatabase(String username) {
         int userId=1;
         try {
+            int counter=0;
             usersIdStatement.setString(1, username);
             ResultSet rs = usersIdStatement.executeQuery();
-            while (rs.next())
+            while (rs.next()) {
                 userId = rs.getInt(1);
+                counter++;
+            }
+            if(counter>1) throw new InvalidUsernameException("In database are more than one user with username: "+username);
             deleteReservationStm.setInt(1,userId);
             deleteReservationStm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (InvalidUsernameException e) {
+            e.printStackTrace();
         }
-
 
 
     }

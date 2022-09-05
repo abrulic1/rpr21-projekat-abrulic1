@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="252.0" styleClass="body" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="169.0" prefWidth="250.0" styleClass="body" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/login.css" />
     </stylesheets>
@@ -17,9 +17,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="218.0">
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="252.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="244.0" text="%you_already_added_item" textAlignment="CENTER" textFill="#ffb9b9">
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="244.0" text="%you_already_added_item" textFill="#ffb9b9">
                <VBox.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </VBox.margin>
@@ -31,7 +31,7 @@
                </font></Label>
             <ButtonBar prefHeight="18.0" prefWidth="265.0">
               <buttons>
-                <Button mnemonicParsing="false" styleClass="buttons" text="%close" textFill="WHITE">
+                <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#closebtnAction" prefHeight="18.0" text="%close">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -41,7 +41,7 @@
                   </Button>
               </buttons>
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </ButtonBar>
          </children>
